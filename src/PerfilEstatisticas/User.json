@@ -1,0 +1,39 @@
+[
+    {
+        "id":0,
+        "name": "Eduardo",
+        "username": "eduardu00",
+        "date_entry": "28/07/2000",
+        "total_drinks": 1203,
+        "total_parties": 124,
+        "classific": "veteran"
+    },
+    {
+        "id":1,
+        "name": "Eduard1",
+        "username": "eduardu01",
+        "date_entry": "28/07/2001",
+        "total_drinks": 1203,
+        "total_parties": 124,
+        "classific": "veteran"
+    },
+    {
+        "id":2,
+        "name": "Eduard2",
+        "username": "eduardu02",
+        "date_entry": "28/07/2002",
+        "total_drinks": 1203,
+        "total_parties": 124,
+        "classific": "veteran"
+    },
+    {
+        "id":3,
+        "name": "Eduard3",
+        "username": "eduardu03",
+        "date_entry": "28/07/2003",
+        "total_drinks": 1203,
+        "total_parties": 124,
+        "classific": "⚔ Veterano"
+    }
+
+]

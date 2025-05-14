@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "nome": "Núcleo de Estudantes de Tecnologia",
+        "faculdade": "ISCTE-IUL",
+        "num_membros": "394",
+        "email": "net@iscte-iul.pt",
+        "site": "https://netiscte.pt/",
+        "rede_social": "https://www.instagram.com/netiscte/"
+
+    },
+
+    {
+        "id": 1,
+        "nome": "Tuna Académica do ISCTE",
+        "faculdade": "ISCTE-IUL",
+        "num_membros": "47",
+        "email": "taiscte@iscte-iul.pt",
+        "site":  "https://taiscte.pt/",
+        "rede_social": "https://www.instagram.com/taiscte/"
+    },
+
+    {
+        "id": 1,
+        "nome": "Comissão de Praxe de IGE",
+        "faculdade": "ISCTE-IUL",
+        "num_membros": "256",
+        "email": "CPIGE@gmail.com",
+        "site": "",
+        "rede_social": ""
+    },
+
+    {
+        "id": 2,
+        "festa": "Arraial da TAISCTE",
+        "organizador": "TAISCTE",
+        "data": "25/06/2025",
+        "hora": "22:00",
+        "preco_jola": 1,
+        "preco_sidra": 1.2,
+        "faculdade": "ISCTE-IUL"
+    },
+
+    {
+        "id": 2,
+        "festa": "Lisboa Eterna",
+        "organizador": "TAISCTE",
+        "data": "7/12/2025",
+        "hora": "18:00",
+        "preco_jola": 0.8,
+        "preco_sidra": 1,
+        "faculdade": "ISCTE-IUL"
+    },
+
+    {
+        "id": 2,
+        "festa": "Churrasco de Mecânica",
+        "organizador": "Comissão de Praxe de Eng. Mecânica",
+        "data": "28/05/2025",
+        "hora": "22:00",
+        "preco_jola": 1,
+        "preco_sidra": 1.5,
+        "faculdade": "IST"
+    }
+]

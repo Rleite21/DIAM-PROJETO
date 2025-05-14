@@ -1,0 +1,117 @@
+body{
+    background-color: #F5F0E1 !important;
+    font-family: 'din-round', sans-serif;
+    
+    
+}
+
+h3{
+    color: black;
+}
+
+
+
+.errorMessage{
+    color: #1C1C1C; /* Texto branco */
+    background-color: #3F84A7; /* Fundo azul claro */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 15px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto */
+    font-size: 18px; /* Tamanho da fonte */
+    font-weight: bold; /* Texto em negrito */
+    width: 80%; /* Largura ajustável */
+    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra suave */
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #1C1C1C !important; /* Define a cor e a espessura da linha */
+    margin: 20px 0; /* Ajusta o espaçamento (opcional) */
+    width: 100%; /* Garante que a linha ocupe toda a largura do contêiner */
+}
+
+#titulo {
+    color: #1C1C1C;
+    display: flex; /* Usa flexbox para alinhar os itens */
+    font-size: 19px;
+    font-weight: 700;
+    justify-content: space-between; /* Mantém os itens nas extremidades horizontais */
+    align-items: center; /* Centraliza verticalmente os itens */
+    padding: 20px;
+    padding-left: 50px;
+}
+
+#definitions {
+    background: none; /* Remove o fundo do botão */
+    border: none; /* Remove qualquer borda do botão */
+    padding: 0; /* Remove o espaçamento interno */
+    cursor: pointer; /* Adiciona o cursor de ponteiro ao passar por cima */
+    transition: transform 0.3s ease; /* Adiciona uma transição suave */
+    display: flex; /* Garante que o botão use flexbox */
+    align-items: center; /* Centraliza verticalmente a imagem dentro do botão */
+    justify-content: center; /* Centraliza horizontalmente a imagem dentro do botão */
+    height: 50px; /* Define uma altura consistente para o botão */
+    width: 50px; /* Define uma largura consistente para o botão */
+}
+
+#definitions img {
+    display: block; /* Garante que a imagem seja tratada como um bloco */
+    margin: 0; /* Remove margens extras */
+    background: none; /* Remove qualquer fundo da imagem */
+    border: none; /* Remove bordas da imagem */
+    width: 40px; /* Define a largura da imagem */
+    height: 40px; /* Define a altura da imagem */
+    transition: transform 0.3s ease; /* Adiciona uma transição suave à imagem */
+}
+
+#definitions:hover {
+    transform: scale(1.2); /* Aumenta o tamanho do botão em 20% */
+}
+
+#definitions img:hover {
+    transform: rotate(15deg); /* Gira a imagem 15 graus ao passar o cursor */
+}
+
+#profile_fig{
+    width: 300px;
+    color: #1C1C1C;
+    margin: 0 auto; /* Centraliza horizontalmente */
+    position: relative;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center; /* Centraliza o conteúdo dentro do contêiner */
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+   
+
+    
+
+}
+
+#profilePic {
+    width: 300px;
+    border: 6px solid #1C1C1C;
+    padding: 15px;
+    border-radius: 100px;
+    margin-bottom: 30px;
+    display: block; /* Garante que a imagem seja tratada como um bloco */
+    margin-left: auto; /* Centraliza horizontalmente */
+    margin-right: auto; /* Centraliza horizontalmente */
+}
+
+.info_pro{
+    
+    font-size: 20px;
+    color: #1C1C1C;
+    font-weight: bold;
+
+
+}
+
+
+
+
+
+

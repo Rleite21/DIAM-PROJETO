@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "nome": "Núcleo de Estudantes de Tecnologia",
+        "faculdade": "ISCTE-IUL",
+        "num_membros": "394",
+        "email": "net@iscte-iul.pt",
+        "site": "https://netiscte.pt/",
+        "rede_social": "https://www.instagram.com/netiscte/"
+
+    },
+
+    {
+        "id": 2,
+        "nome": "Tuna Académica do ISCTE",
+        "faculdade": "ISCTE-IUL",
+        "num_membros": "47",
+        "email": "taiscte@iscte-iul.pt",
+        "site":  "https://taiscte.pt/",
+        "rede_social": "https://www.instagram.com/taiscte/"
+    },
+
+    {
+        "id": 3,
+        "nome": "Comissão de Praxe de IGE",
+        "faculdade": "ISCTE-IUL",
+        "num_membros": "256",
+        "email": "CPIGE@gmail.com",
+        "site": "",
+        "rede_social": ""
+    }
+]
