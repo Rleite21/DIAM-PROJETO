@@ -4,15 +4,25 @@ import Calc_Finos from '../Calc_Finos/Calc_Finos';
 import Vol_Req from '../Vol_Req/Vol_Req';
 import Cards from '../Cards/Cards';
 import Mapa from './mapa'; 
+import Footer from './Footer';
 
 const Home = () => {
+  const footerProps = {
+    email: "example@example.com",
+    site: "https://example.com",
+    rede_social: "https://instagram.com/example"
+  };
+
   return (
-    <div className='app-container'>
+    <div className='app-container' style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-      <Mapa />
-      <Calc_Finos />
-      <Vol_Req />
-      <Cards typeId={2} /> 
+      <div style={{ flex: 1 }}>
+        <Mapa />
+        <Calc_Finos />
+
+        <Cards typeId={2} />
+      </div>
+      <Footer {...footerProps} />
     </div>
   );
 };

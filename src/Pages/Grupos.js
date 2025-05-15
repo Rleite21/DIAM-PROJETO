@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import LogIn from './LogIn.js';
 import gruposData from '../Cards/Grupos.json'
+import Footer from './Footer.js';
 import '../cssFiles/Grupos.css';
-
 
 const Grupos = () => {
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ const Grupos = () => {
           </button>
         ))}
       </div>
+      <Footer />
 
     </div>
   );
