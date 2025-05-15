@@ -9,10 +9,7 @@ const Home = () => {
   return (
     <div className='app-container'>
       <Header />
-      <Mapa />
-      <Calc_Finos />
-      <Vol_Req />
-      <Cards typeId={2} /> 
+      <Mapa /> 
     </div>
   );
 };
