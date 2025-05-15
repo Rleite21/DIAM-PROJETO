@@ -9,7 +9,7 @@ function Profile({user}) {
         <div>
             <div id="titulo">
                 <h1><strong>Perfil</strong></h1>
-                <button id="definitions">
+                <button id="settings">
                 <img src="https://cdn-icons-png.flaticon.com/512/503/503849.png " alt="Decorative" />
                     </button>
             </div>

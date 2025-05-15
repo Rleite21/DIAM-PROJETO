@@ -8,6 +8,7 @@ import LogIn from './Pages/LogIn'
 import Mapa from './Pages/mapa';
 import './App.css';
 import PerfilEstatisticas from './Pages/PerfilEstatisticas';
+import Register from './Pages/Register';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Grupo/:nome" element={<Grupo />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/PerfilEstatisticas" element={<PerfilEstatisticas id = '0' />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
     </Router>
   );

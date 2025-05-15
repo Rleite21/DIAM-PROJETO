@@ -6,7 +6,6 @@ import Header from "../Header/Header";
 function LogIn() {
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
 
     return (
         <div className="app-container">
@@ -14,7 +13,7 @@ function LogIn() {
             <div id="login_container">
                 <div id="login_box">
                     <h1>Entrar</h1>
-                    <p>Ainda não tens conta? <a><strong>Criar conta</strong></a></p>
+                    <p>Ainda não tens conta? <a href="/Register"><strong>Criar conta</strong></a></p>
                     <form id="logIn_form">
                         <label id="user_label">Nome de <strong>Usuário</strong> ou <strong>Email</strong></label>
                         <input id="input_user" type="text"></input>
@@ -24,7 +23,7 @@ function LogIn() {
                         <button
                             id="LogIn_Button"
                             type="button"
-                            onClick={() => navigate(from)}
+                            onClick={() => navigate('/')}
                         >
                             Entrar
                         </button>

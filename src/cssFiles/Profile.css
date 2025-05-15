@@ -42,7 +42,7 @@ hr {
     padding-left: 50px;
 }
 
-#definitions {
+#settings {
     background: none; /* Remove o fundo do botão */
     border: none; /* Remove qualquer borda do botão */
     padding: 0; /* Remove o espaçamento interno */
@@ -55,7 +55,7 @@ hr {
     width: 50px; /* Define uma largura consistente para o botão */
 }
 
-#definitions img {
+#settings img {
     display: block; /* Garante que a imagem seja tratada como um bloco */
     margin: 0; /* Remove margens extras */
     background: none; /* Remove qualquer fundo da imagem */
@@ -65,11 +65,7 @@ hr {
     transition: transform 0.3s ease; /* Adiciona uma transição suave à imagem */
 }
 
-#definitions:hover {
-    transform: scale(1.2); /* Aumenta o tamanho do botão em 20% */
-}
-
-#definitions img:hover {
+#settings img:hover {
     transform: rotate(15deg); /* Gira a imagem 15 graus ao passar o cursor */
 }
 

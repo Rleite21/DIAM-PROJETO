@@ -18,7 +18,7 @@ const Grupos = () => {
         {gruposData.map((grupo) => (
           <button
             key={grupo.nome}
-            className="card card-button"
+            className="card-button"
             onClick={() => navigate('/LogIn')} 
           >
             <h3>{grupo.nome}</h3>

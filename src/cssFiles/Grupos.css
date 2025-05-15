@@ -22,9 +22,17 @@
   transition: background 0.3s;
 }
 
+.card-button {
+  box-sizing: border-box;
+}
+
 .card-button:hover {
   background-color: #D4AF37 !important;
   color: #000000 !important;
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  border: none;
 }
 
 .card h3 {
@@ -35,13 +43,4 @@
 .card p {
   font-size: 0.9rem;
   margin-bottom: 8px;
-}
-
-.btn-link {
-  background: green;
-  color: white !important;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 20px;
-  cursor: pointer;
 }
