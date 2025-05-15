@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 function LogIn() {
     const navigate = useNavigate(); 
     const location = useLocation();
-    const fromGrupos = location.state?.fromGrupos === true; // Ensure it's explicitly checked as true
+    const fromGrupos = location.state?.fromGrupos === true; 
     const grupoNome = location.state?.grupoNome || null;
 
     return (
