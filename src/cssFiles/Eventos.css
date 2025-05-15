@@ -1,72 +1,71 @@
-/* Estilo para o botão de alternância da barra lateral */
 #toggle_button {
-    position: fixed; /* Fixa o botão na posição */
-    top: 150px; /* Centraliza verticalmente */
-    right: 0px; /* Posiciona próximo à barra lateral */
-    background-color: #D4AF37; /* Cor de fundo */
-    color: #1C1C1C; /* Cor do texto */
-    border: none; /* Remove bordas */
-    border-radius: 10px; /* Bordas arredondadas */
-    border-top-right-radius: 0; /* Remove a borda arredondada no canto superior direito */
-    border-bottom-right-radius: 0; /* Remove a borda arredondada no canto superior direito */
-    padding: 10px; /* Espaçamento interno */
-    cursor: pointer; /* Mostra o cursor de ponteiro */
-    z-index: 1000; /* Garante que fique acima da barra lateral */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
-    transition: 0.3s ease; /* Transição suave ao abrir/fechar */
+    position: fixed;
+    top: 150px;
+    right: 0px;
+    background-color: #D4AF37;
+    color: #1C1C1C;
+    border: none;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+    font-family: 'Courier New', monospace;
 }
 
-#toggle_button.open{
+#toggle_button.open {
     right: 300px;
     box-shadow: none;
 }
-#toggle_button:hover{
+
+#toggle_button:hover {
     color: white;
-    transition: 0.3s ease; /* Transição suave ao abrir/fechar */
+    transition: 0.3s ease;
 }
 
-/* Estilo para a barra lateral de "Próximos Eventos" */
 #event_sidebar {
-    position: fixed; /* Fixa a barra lateral na posição */
+    position: fixed;
     border-radius: 20px;
-    border-top-left-radius: 0; /* Remove a borda arredondada no canto superior esquerdo */
-    top: 150px; /* Alinha ao topo da página */
-    right: -300px; /* Esconde a barra lateral inicialmente */
-    width: 300px; /* Define a largura da barra lateral */
-    height: auto; /* Ocupa toda a altura da janela */
-    background-color: #D4AF37; /* Cor de fundo */
-    padding: 20px; /* Espaçamento interno */
+    border-top-left-radius: 0;
+    top: 150px;
+    right: -300px;
+    width: 300px;
+    height: auto;
+    background-color: #D4AF37;
+    padding: 20px;
     box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.5),
                 inset 2px 2px 5px rgba(0, 0, 0, 0.2),
-                4px 4px 10px rgba(0, 0, 0, 0.3); /* Efeito 3D padrão */
-    overflow-y: auto; /* Adiciona rolagem se o conteúdo for maior que a altura */
-    z-index: 1000; /* Garante que a barra fique acima de outros elementos */
-    transition: right 0.3s ease; /* Transição suave ao abrir/fechar */
-    p{
-        transition: 0.3s ease; /* Transição suave ao abrir/fechar */
+                4px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    font-family: Arial, sans-serif;
+    p {
+        transition: 0.3s ease;
     }
-
-    
 }
 
 #event_sidebar.open {
-    right: 0; /* Mostra a barra lateral quando aberta */
-    p{
-        color:white;
-        transition: 0.3s ease; /* Transição suave ao abrir/fechar */
+    right: 0;
+    p {
+        color: rgb(0, 0, 0);
+        transition: 0.3s ease;
     }
 }
 
 #event_sidebar.closed {
-    right: -300px; /* Esconde a barra lateral quando fechada */
+    right: -300px;
 }
 
 #title_event {
     font-size: 24px;
-    font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
 }
+
 
 
 

@@ -5,6 +5,7 @@ import Vol_Req from '../Vol_Req/Vol_Req';
 import Cards from '../Cards/Cards';
 import Mapa from './mapa'; 
 import Footer from './Footer';
+import ProximosEventos from './Eventos';
 
 const Home = () => {
 
@@ -13,6 +14,7 @@ const Home = () => {
       <Header />
       <Mapa /> 
       <Footer />
+      <ProximosEventos />
     </div>
   );
 };
