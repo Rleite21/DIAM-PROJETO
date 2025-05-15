@@ -18,7 +18,7 @@ const Grupos = () => {
           <button
             key={grupo.nome}
             className="card card-button"
-            onClick={() => navigate('/login')} // Updated to match the correct route
+            onClick={() => navigate('/LogIn')} 
           >
             <h3>{grupo.nome}</h3>
             <p><strong>Faculdade:</strong> {grupo.faculdade}</p>

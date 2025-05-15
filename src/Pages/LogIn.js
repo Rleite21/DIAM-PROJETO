@@ -1,19 +1,12 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom"; 
+import { useNavigate, useLocation } from "react-router-dom";
 import '../cssFiles/LogIn.css';
 import Header from "../Header/Header";
 
-
 function LogIn() {
-    const navigate = useNavigate(); 
-<<<<<<< Updated upstream
+    const navigate = useNavigate();
     const location = useLocation();
-    const fromGrupos = location.state?.fromGrupos === true; 
-    const grupoNome = location.state?.grupoNome || null;
-=======
-    const location = useLocation();   
     const from = location.state?.from?.pathname || '/';
->>>>>>> Stashed changes
 
     return (
         <div className="app-container">
@@ -26,23 +19,12 @@ function LogIn() {
                         <label id="user_label">Nome de <strong>Usuário</strong> ou <strong>Email</strong></label>
                         <input id="input_user" type="text"></input>
                         <label id="pass_label">Palavra-Passe</label>
-                        <input id="input_pass" type="text"></input>
+                        <input id="input_pass" type="password"></input>
                         <input id="Save_Info" type="checkbox"></input><strong>Guardar Info </strong>
                         <button
                             id="LogIn_Button"
-<<<<<<< Updated upstream
                             type="button"
-                            onClick={() => {
-                                if (fromGrupos && grupoNome) {
-                                    navigate(`/Grupo/${grupoNome}`);
-                                } else {
-                                    navigate('/');
-                                }
-                            }}
-=======
-                            type="button" 
                             onClick={() => navigate(from)}
->>>>>>> Stashed changes
                         >
                             Entrar
                         </button>
