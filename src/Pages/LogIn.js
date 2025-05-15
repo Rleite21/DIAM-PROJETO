@@ -3,11 +3,17 @@ import { useNavigate, useLocation } from "react-router-dom";
 import '../cssFiles/LogIn.css';
 import Header from "../Header/Header";
 
+
 function LogIn() {
     const navigate = useNavigate(); 
+<<<<<<< Updated upstream
     const location = useLocation();
     const fromGrupos = location.state?.fromGrupos === true; 
     const grupoNome = location.state?.grupoNome || null;
+=======
+    const location = useLocation();   
+    const from = location.state?.from?.pathname || '/';
+>>>>>>> Stashed changes
 
     return (
         <div className="app-container">
@@ -24,6 +30,7 @@ function LogIn() {
                         <input id="Save_Info" type="checkbox"></input><strong>Guardar Info </strong>
                         <button
                             id="LogIn_Button"
+<<<<<<< Updated upstream
                             type="button"
                             onClick={() => {
                                 if (fromGrupos && grupoNome) {
@@ -32,6 +39,10 @@ function LogIn() {
                                     navigate('/');
                                 }
                             }}
+=======
+                            type="button" 
+                            onClick={() => navigate(from)}
+>>>>>>> Stashed changes
                         >
                             Entrar
                         </button>
