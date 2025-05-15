@@ -44,3 +44,25 @@
   font-size: 0.9rem;
   margin-bottom: 8px;
 }
+
+.criarGrupo-button {
+	background-color: #fbeee0;
+	border: 2px solid #422800;
+	border-radius: 30px;
+	box-shadow: #422800 4px 4px 0 0;
+	color: #422800;
+	font-size: 18px;
+	padding: 0 18px;
+	line-height: 50px;
+	touch-action: manipulation;
+  margin: 30px auto;
+  display: block;
+}
+
+.criarGrupo-button:hover {
+	background-color: #D4AF37;
+}
+
+.criarGrupo-button:active {
+	box-shadow: #422800 2px 2px 0 0;
+}

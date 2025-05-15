@@ -28,6 +28,12 @@ const Grupos = () => {
         ))}
       </div>
 
+      <div>
+        <button className="criarGrupo-button" onClick={() => navigate('/createGroup')}>
+          Criar Grupo
+        </button>
+      </div>
+
       <ProximosEventos />
       <Footer />
 
