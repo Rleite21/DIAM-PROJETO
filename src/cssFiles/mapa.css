@@ -17,10 +17,10 @@ body {
 #map {
     height: 90vh;
     width: 70%;
-    margin: 2rem auto;      /* centers the map horizontally */
-    display: block;         /* ensures margin auto works */
-    border: 3px solid var(--primary); /* adds a border */
-    border-radius: 12px;    /* optional: rounded corners */
+    margin: 2rem auto;
+    display: block;
+    border: 3px solid var(--primary);
+    border-radius: 12px;
 }
 
 .cluster-div {
@@ -54,3 +54,31 @@ body {
     flex-direction: column;
     gap: 1rem;
 }
+
+.button-mapa {
+    background-color: #fbeee0;
+	border: 2px solid #422800;
+	border-radius: 40px;
+	box-shadow: #422800 4px 4px 0 0;
+	color: #422800;
+	cursor: pointer;
+    padding: 15px 30px;
+    font-size: 20px;
+}
+
+.button-mapa:hover {
+	background-color: #ffa200;
+}
+
+.button-mapa:active {
+	box-shadow: #422800 2px 2px 0 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+
