@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import Grupos from './Pages/Grupos';
 import Grupo from './Pages/Grupo';
 import LogIn from './Pages/LogIn'
+import Mapa from './Pages/mapa';
 import './App.css';
 import PerfilEstatisticas from './Pages/PerfilEstatisticas';
 
