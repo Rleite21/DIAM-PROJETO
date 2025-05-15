@@ -3,8 +3,6 @@ import '../cssFiles/Profile.css';
 
 function Profile({user}) {
 
-
-
     return (
         <div>
             <div id="titulo">
