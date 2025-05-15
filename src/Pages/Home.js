@@ -7,11 +7,6 @@ import Mapa from './mapa';
 import Footer from './Footer';
 
 const Home = () => {
-  const footerProps = {
-    email: "example@example.com",
-    site: "https://example.com",
-    rede_social: "https://instagram.com/example"
-  };
 
   return (
     <div className='app-container' style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
