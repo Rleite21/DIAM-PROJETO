@@ -1,10 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, useLocation } from "react-router-dom"; 
 import '../cssFiles/LogIn.css';
 import Header from "../Header/Header";
 
 function LogIn() {
     const navigate = useNavigate(); 
+    const location = useLocation();
+    const fromGrupos = location.state?.fromGrupos === true; // Ensure it's explicitly checked as true
+    const grupoNome = location.state?.grupoNome || null;
 
     return (
         <div className="app-container">
@@ -21,8 +24,14 @@ function LogIn() {
                         <input id="Save_Info" type="checkbox"></input><strong>Guardar Info </strong>
                         <button
                             id="LogIn_Button"
-                            type="button" 
-                            onClick={() => navigate('/')} 
+                            type="button"
+                            onClick={() => {
+                                if (fromGrupos && grupoNome) {
+                                    navigate(`/Grupo/${grupoNome}`);
+                                } else {
+                                    navigate('/');
+                                }
+                            }}
                         >
                             Entrar
                         </button>
