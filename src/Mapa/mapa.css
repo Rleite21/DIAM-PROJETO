@@ -1,0 +1,19 @@
+:root {
+	--primary: rgba(37, 37, 37, 1.0);
+	--secondary: rgba(252, 41, 74, 1.0);
+	--shades: rgba(238, 238, 238, 1.0);
+}
+
+* {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	line-height: 1.6;
+	margin: 0;
+}
+
+#map{
+    height: 300px;
+}
