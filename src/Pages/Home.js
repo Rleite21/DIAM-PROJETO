@@ -17,6 +17,7 @@ const Home = () => {
     <div className='app-container' style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
       <Mapa /> 
+      <Footer />
     </div>
   );
 };
