@@ -16,13 +16,7 @@ const Home = () => {
   return (
     <div className='app-container' style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-      <div style={{ flex: 1 }}>
-        <Mapa />
-        <Calc_Finos />
-
-        <Cards typeId={2} />
-      </div>
-      <Footer {...footerProps} />
+      <Mapa /> 
     </div>
   );
 };
