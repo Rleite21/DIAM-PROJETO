@@ -13,7 +13,6 @@ const Home = () => {
       <Mapa /> 
       <Calculadora />
       <Footer />
-      <ProximosEventos />
     </div>
   );
 };
