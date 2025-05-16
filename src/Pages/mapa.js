@@ -6,7 +6,6 @@ import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster';
 
-
 function Mapa() {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
@@ -27,14 +26,13 @@ function Mapa() {
                 iconSize: [38, 38],
             });
 
-
             const myClusterLayer = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
                     return L.divIcon({
                         html: '<div class="cluster-div">' + cluster.getChildCount() + '</div>',
                     });
                 }
-            })
+            });
             const market1 = L.marker([38.74799571383414, -9.153464619121293], {icon: customIcon}).addTo(map);
             market1.bindPopup("<h3>Arraial da TAISCTE</h3>");
             const market2 = L.marker([38.747293968592224, -9.152703276949321], {icon: customIcon}).addTo(map);
@@ -69,12 +67,13 @@ function Mapa() {
             <div id="map"></div>
 
             <div className="button-container">
-                <button className="button-mapa" onClick={() => setShowForm(true)}>Adicionar Bebida</button>
+                <button className="button-mapa" onClick={() => setShowForm((v) => !v)}>
+                    {showForm ? "Fechar formulário" : "Adicionar Evento"}
+                </button>
             </div>
 
-
-            {showForm && (
-                <div className="modal">
+            <div className={`slide-form-container${showForm ? " open" : ""}`}>
+                {showForm && (
                     <form className="evento-form" onSubmit={handleSubmit}>
                         <label>
                             Onde bebeu?
@@ -108,10 +107,9 @@ function Mapa() {
                             />
                         </label>
                         <button type="submit">Enviar</button>
-                        <button type="button" onClick={() => setShowForm(false)}>Cancelar</button>
                     </form>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }
