@@ -4,8 +4,9 @@ class Classificacao(models.Model):
     designacao = models.CharField(max_length=20)
 
 class Grupo(models.Model):
-    nome = models.CharField(max_length=20)
-    descricao = models.CharField(max_length=820)
+    nome = models.CharField(max_length=20, blank=False, null=False)
+    descricao = models.CharField(max_length=820, blank=False, null=False)
+    num_membros=models.IntegerField(default=0)
 
 class Evento(models.Model):
     nome = models.CharField(max_length=20)

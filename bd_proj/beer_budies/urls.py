@@ -1,0 +1,9 @@
+from django.urls import path
+from . import views
+
+app_name = 'beer_budies'
+
+urlpatterns = [
+    path('api/grupos/', views.listar_grupos),
+   
+]
