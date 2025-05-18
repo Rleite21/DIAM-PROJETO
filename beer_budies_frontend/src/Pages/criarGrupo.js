@@ -1,30 +1,55 @@
-import '../cssFiles/CriarGrupo.css';
-import Header from "../Header/Header";
+import React, {useEffect, useState } from 'react';
+import { useNavigate} from 'react-router-dom';
+import axios from 'axios';
+import '../cssFiles/Grupos.css';
+import Header from '../Header/Header';
 
-function CriarGrupo() {
 
-    return (
-        <div id="criarGrupo_container">
-            <div id="criarGrupo_box">
-                <Header />
-                <h1>Criar Grupo</h1>
-                <form id="criarGrupo_form">
-                    <label htmlFor="nomeGrupo">Nome do Grupo</label>
-                    <input type="text" id="nomeGrupo" name="nomeGrupo" />
+function CriarGrupo(){
+  const navigate = useNavigate(); 
+  const [nomeG, setnomeG] = useState("");
+  const [descG, setdescG] = useState("");
+  const ENDPOINT_URL = 'http://127.0.0.1:8000/beer_budies/api/grupos/';
 
-                    <label htmlFor="descricaoGrupo">Descrição</label>
-                    <textarea id="descricaoGrupo" name="descricaoGrupo" />
+  const submitHandler = (e) => {
+     e.preventDefault();
+  
+    if (descG.trim() === "") {
+        document.getElementById("warning_message").innerText="É obrigatório tem descrição!";
+        return;
+    }
+    if (nomeG.trim() === "") {
+        document.getElementById("warning_message").innerText="É obrigatório tem nome!";
+        return;
+    }
+    axios.post(ENDPOINT_URL, {"nome": nomeG, "descricao":descG,"num_membros":0}).then();
+    navigate('/Grupos')
+    }
+ 
 
-                    <button
-                        id="criarGrupo_Button"
-                        type="submit"
-                    >
-                        Criar Grupo
-                    </button>
-                </form>
-            </div>
+
+
+
+  return (
+    
+    <div className="app-container">
+        <Header />
+        <div className='form_container'>
+            <h1>Inserir novo grupo</h1>
+            <form onSubmit={submitHandler}>
+                <label className="form-label">Nome do Grupo: </label>
+                <input className="form-input" type="text" value={nomeG} onChange={(e) => setnomeG(e.target.value)}/>
+                <br/><br/>
+                <label className="form-label">Descrição: </label>
+                <textarea className="form-input" id="descricao" value={descG} onChange={(e) => setdescG(e.target.value)} rows={4} style={{resize: 'vertical'}} />
+                <p id="warning_message"></p>
+                <br/><br/>
+                <input className="form-submit" type="submit" value="Submeter"/>
+            </form>
         </div>
-    );
-}
+        
+    </div>
+  );
+};
 
 export default CriarGrupo;
