@@ -16,7 +16,7 @@ const Grupos = () => {
       <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Grupos Disponíveis</h2>
 
       <div>
-        <button className="criarGrupo-button" onClick={() => navigate('/createGroup')}>
+        <button className="criarGrupo-button" onClick={() => navigate('/criarGupo')}>
           Criar Grupo
         </button>
       </div>

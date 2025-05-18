@@ -9,8 +9,9 @@ import Mapa from './Pages/mapa';
 import './App.css';
 import PerfilEstatisticas from './Pages/PerfilEstatisticas';
 import Register from './Pages/Register';
-import CriarGrupo from './Pages/criarGrupo';
+import CriarGrupo from './Pages/CriarGrupo';
 import ProximosEventos from './Pages/Eventos';
+import CriarEvento from './Pages/CriarEvento';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/PerfilEstatisticas" element={<PerfilEstatisticas id = '0' />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/CriarGrupo" element={<CriarGrupo />} />
+        <Route path="/CriarEvento" element={<CriarEvento />} />
         <Route path="/ProximosEventos" elemento={<ProximosEventos />} />
       </Routes>
     </Router>

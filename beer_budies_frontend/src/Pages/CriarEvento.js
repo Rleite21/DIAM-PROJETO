@@ -24,9 +24,9 @@ function CriarEvento(){
 
     axios.post(ENDPOINT_URL, {
       nome: nomeE,
-      uni: uniE,  // ⚠️ obrigatório ID numérico existente
-      data: dataE,                 // formato: "2025-05-20"
-      hora: `${horaE}:00`,         // formato: "22:00:00"
+      uni: uniE,  
+      data: dataE,                 
+      hora: `${horaE}:00`,        
       preco_J: parseFloat(precoJolaE),
     })
     .then(() => navigate('/'));
@@ -41,7 +41,7 @@ function CriarEvento(){
           <label className="form-label">Nome do Evento: </label>
           <input className="form-input" type="text" value={nomeE} onChange={(e) => setnomeE(e.target.value)} />
 
-          <label className="form-label">ID da Universidade: </label>
+          <label className="form-label">Universidade: </label>
           <input className="form-input" type="text" value={uniE} onChange={(e) => setuniE(e.target.value)} />
 
           <label className="form-label">Data: </label>
