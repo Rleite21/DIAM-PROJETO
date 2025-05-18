@@ -71,8 +71,6 @@ function Mapa() {
             <div className="button-container">
                 <button className="button-mapa" onClick={() => setShowForm(true)}>Adicionar Bebida</button>
             </div>
-
-
             {showForm && (
                 <div className="modal">
                     <form className="evento-form" onSubmit={handleSubmit}>

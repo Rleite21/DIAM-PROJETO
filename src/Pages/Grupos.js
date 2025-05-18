@@ -33,8 +33,6 @@ const Grupos = () => {
           Criar Grupo
         </button>
       </div>
-
-      <ProximosEventos />
       <Footer />
 
     </div>
