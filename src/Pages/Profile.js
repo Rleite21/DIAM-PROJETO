@@ -7,9 +7,12 @@ function Profile({user}) {
         <div>
             <div id="titulo">
                 <h1><strong>Perfil</strong></h1>
-                <button id="settings">
-                <img src="https://cdn-icons-png.flaticon.com/512/503/503849.png " alt="Decorative" />
-                    </button>
+                <button
+                    id="settings"
+                    onClick={() => window.location.href = '/Settings'}
+                >
+                    <img src="https://cdn-icons-png.flaticon.com/512/503/503849.png" alt="Decorative" />
+                </button>
             </div>
             
             <hr />

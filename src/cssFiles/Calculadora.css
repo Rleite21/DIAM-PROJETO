@@ -47,6 +47,18 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: white;
     text-align: center;
+    width: 100%;
+}
+
+#calculadora_finos h2,
+#calculadora_finos label,
+#calculadora_finos #result_box,
+#calculadora_finos #emoji-line,
+#calculadora_finos p {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #calc_values {
