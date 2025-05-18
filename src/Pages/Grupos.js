@@ -5,7 +5,7 @@ import LogIn from './LogIn.js';
 import gruposData from '../Cards/Grupos.json'
 import Footer from './Footer.js';
 import '../cssFiles/Grupos.css';
-import ProximosEventos from './Eventos.js';
+import ProximosEventos from './ProximosEventos';
 
 const Grupos = () => {
   const navigate = useNavigate();
@@ -14,13 +14,6 @@ const Grupos = () => {
     <div className="app-container">
       <Header />
       <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Grupos Disponíveis</h2>
-
-      <div>
-        <button className="criarGrupo-button" onClick={() => navigate('/createGroup')}>
-          Criar Grupo
-        </button>
-      </div>
-
       <div className="lista-grupos">
         {gruposData.map((grupo) => (
           <button
@@ -35,7 +28,15 @@ const Grupos = () => {
         ))}
       </div>
 
+      <div>
+        <button className="criarGrupo-button" onClick={() => navigate('/criarGrupo')}>
+          Criar Grupo
+        </button>
+      </div>
+
+      <ProximosEventos />
       <Footer />
+
     </div>
   );
 };
