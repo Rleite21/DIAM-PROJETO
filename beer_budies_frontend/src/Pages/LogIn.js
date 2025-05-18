@@ -7,7 +7,6 @@ import { UserContext } from '../context/UserContext';
 
 
 function LogIn() {
-    const { setUserId } = useContext(UserContext);
     const [username,setUsername]= useState('');
     const [password,setPassword]= useState('');
     const navigate = useNavigate();
@@ -17,7 +16,6 @@ function LogIn() {
         e.preventDefault();
         try{
             await axios.post('http://localhost:8000/beer_budies/api/login/', {username, password}, {withCredentials: true});
-            setUserId(response.data.user_id);
             alert('Login successful!');
             navigate('/');
             } catch (error) {

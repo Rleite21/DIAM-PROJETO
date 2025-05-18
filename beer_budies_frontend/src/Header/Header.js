@@ -1,11 +1,12 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { useParams } from 'react-router-dom';
 
 function Header() {
     const location = useLocation();
     const { nome } = useParams();
+    const navigate = useNavigate();
 
     const isGruposPage = location.pathname === '/grupos';
     const isGrupoPage = location.pathname.startsWith('/Grupo');
@@ -13,7 +14,7 @@ function Header() {
     return (
         <div>
             <header className="header">
-                {isGrupoPage? (
+                {isGrupoPage ? (
                     <div>
                         <h1>Bem-vindo ao {nome}!</h1>
                     </div>
@@ -21,11 +22,14 @@ function Header() {
                     <div>
                         <h1>Bem-vindo aos Grupos!</h1>
                     </div>
-
                 ) : (
                     <div>
                         <h1>Este mês já bebeste:</h1>
-                        <button className="button-74" role="button">
+                        <button
+                            className="button-74"
+                            role="button"
+                            onClick={() => navigate('/LogIn')}
+                        >
                             Começa a contar!
                         </button>
                     </div>

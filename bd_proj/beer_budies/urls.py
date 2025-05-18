@@ -12,5 +12,6 @@ urlpatterns = [
     path("api/user/", views.user_view),
     path("api/userinfo/<int:user_id>/", views.userInfo_view),
     path("api/user/id/", views.user_id_view),
-   
+    path("api/adicionar_bebida/", views.adicionar_bebida),
+    path("api/minhas_bebidas/", views.listar_bebidas_user),
 ]

@@ -5,7 +5,7 @@ import LogIn from './LogIn.js';
 import axios from 'axios';
 import gruposData from '../Cards/Grupos.json'
 import '../cssFiles/Grupos.css';
-import CriarGrupo from './CriarGrupo.js';
+import CriarGrupo from './criarGrupo.js';
 
 
 const Grupos = () => {
@@ -39,7 +39,7 @@ const Grupos = () => {
       <div className='criarGrupoContainer'>
         <button
             className="CriarGrupoButton"
-            onClick={() => navigate('/CriarGrupo')} // Updated to match the correct route
+            onClick={() => navigate('/criarGrupo')} // Updated to match the correct route
           >Criar Grupo</button>
 
       </div>

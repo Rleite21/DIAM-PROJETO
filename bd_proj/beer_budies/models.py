@@ -15,6 +15,9 @@ class Evento(models.Model):
     hora = models.TimeField()
     preco_J = models.FloatField()
 
+class Bebida(models.Model):
+    nome = models.CharField(max_length=20)
+    teor_alcool = models.FloatField()
 
 class UserInfo(models.Model):
     username = models.CharField(max_length=50)
@@ -22,6 +25,12 @@ class UserInfo(models.Model):
     total_festas = models.IntegerField(default=0)
     classificacao = models.ForeignKey('Classificacao', on_delete=models.SET_NULL, null=True)
     data_entrada = models.DateField()
+
+class UserBebida(models.Model):
+    data = models.DateTimeField()
+    coordenadas = models.CharField(max_length=50)
+    bebida = models.ForeignKey(Bebida, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
 
 
 

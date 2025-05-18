@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Classificacao, Grupo, Evento, UserInfo
+from .models import Classificacao, Grupo, Evento, UserInfo, UserBebida
 
 class ClassificacaoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,4 +26,9 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserInfo   # 👈 estava errado (era User), o correto é UserInfo
+        fields = '__all__'
+
+class UserBebidaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserBebida
         fields = '__all__'
