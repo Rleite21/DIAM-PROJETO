@@ -5,7 +5,7 @@ import LogIn from './LogIn.js';
 import gruposData from '../Cards/Grupos.json'
 import Footer from './Footer.js';
 import '../cssFiles/Grupos.css';
-import ProximosEventos from './Eventos.js';
+import ProximosEventos from './ProximosEventos';
 
 const Grupos = () => {
   const navigate = useNavigate();
