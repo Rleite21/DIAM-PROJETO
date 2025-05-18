@@ -14,6 +14,13 @@ const Grupos = () => {
     <div className="app-container">
       <Header />
       <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Grupos Disponíveis</h2>
+
+      <div>
+        <button className="criarGrupo-button" onClick={() => navigate('/criarGupo')}>
+          Criar Grupo
+        </button>
+      </div>
+
       <div className="lista-grupos">
         {gruposData.map((grupo) => (
           <button
@@ -28,15 +35,7 @@ const Grupos = () => {
         ))}
       </div>
 
-      <div>
-        <button className="criarGrupo-button" onClick={() => navigate('/createGroup')}>
-          Criar Grupo
-        </button>
-      </div>
-
-      <ProximosEventos />
       <Footer />
-
     </div>
   );
 };
