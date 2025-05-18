@@ -19,21 +19,19 @@ function Calc_Finos() {
             <div id="calculadora_finos">
                 <h2>Quantas bebidas consegues comprar?</h2>
                 <form id="calc_values">
-                    <div>
-                        <label htmlFor="Dinheiro">Dinheiro</label>
-                        <input type="text" id="Dinheiro" />€<br />
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                        <label htmlFor="Dinheiro" style={{ minWidth: "90px", textAlign: "right" }}>Dinheiro</label>
+                        <input type="text" id="Dinheiro" style={{ textAlign: "center" }} />€
                     </div>
-                    <div>
-                        <label htmlFor="Preco_fin">Preço da Bebida</label>
-                        <input type="text" id="Preco_fin" />€
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                        <label htmlFor="Preco_fin" style={{ minWidth: "90px", textAlign: "right" }}>Preço da Bebida</label>
+                        <input type="text" id="Preco_fin" style={{ textAlign: "center" }} />€
                     </div>
                 </form>
                 <Button id="calc_button" variant="success" onClick={handle_calc}>
                     Calcular Bebidas
                 </Button>
-                <div id="result_box">
-                    <p id="result_finos"></p>
-                </div>
+                <p id="result_finos"></p>
                 <p id="emoji-line"></p>
             </div>
         </div>
@@ -54,9 +52,9 @@ function calcula_finos() {
         return;
     }
     if (num_finos === 1) {
-        document.getElementById("result_finos").innerText = num_finos + " Jola";
+        document.getElementById("result_finos").innerText = num_finos + " Bebida";
     } else {
-        document.getElementById("result_finos").innerText = num_finos + " Jolas";
+        document.getElementById("result_finos").innerText = num_finos + " Bebidas";
     }
 }
 
