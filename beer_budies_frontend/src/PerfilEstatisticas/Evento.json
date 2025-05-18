@@ -9,9 +9,19 @@
     },
 
     {
-        "name": "Arraial TAISCTE",
-        "uni": "ISCTE",
-        "data": "29/07/2024",
+        "name": "Sunset de Gestão",
+        "uni": "ISCTE-IUL",
+        "data": "27/06/2024",
+        "hora": "18:00",
+        "preco_J": 0.5,
+        "preco_S": 1.0
+    }
+    ,
+
+    {
+        "name": "Convívio Eletro-Técnica",
+        "uni": "IST",
+        "data": "19/05/2024",
         "hora": "12000",
         "preco_J": 0.5,
         "preco_S": 1.0
@@ -19,19 +29,9 @@
     ,
 
     {
-        "name": "Arraial TAISCTE",
-        "uni": "ISCTE",
-        "data": "29/07/2024",
-        "hora": "12000",
-        "preco_J": 0.5,
-        "preco_S": 1.0
-    }
-    ,
-
-    {
-        "name": "Arraial TAISCTE",
-        "uni": "ISCTE",
-        "data": "29/07/2024",
+        "name": "Arraial da TAISCTE",
+        "uni": "ISCTE-IUL",
+        "data": "23/06/2024",
         "hora": "12000",
         "preco_J": 0.5,
         "preco_S": 1.0

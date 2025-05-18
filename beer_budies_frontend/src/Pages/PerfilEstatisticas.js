@@ -27,7 +27,6 @@ function PerfilEstatisticas({id}){
     return(
         <>
             <Header />
-            <ProximosEventos/>
             <Profile user={user}/>
             <Estatisticas user={user}/>
         </>

@@ -8,8 +8,9 @@ import LogIn from './Pages/LogIn'
 import Mapa from './Pages/mapa';
 import './App.css';
 import PerfilEstatisticas from './Pages/PerfilEstatisticas';
-import CriarGrupo from './Pages/CriarGrupo';
-import CriarEvento from './Pages/CriarEvento';
+import Register from './Pages/Register';
+import CriarGrupo from './Pages/criarGrupo';
+import ProximosEventos from './Pages/Eventos';
 
 function App() {
   return (
@@ -18,11 +19,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Grupos" element={<Grupos />} />
-        <Route path="/CriarGrupo" element={<CriarGrupo />} />
         <Route path="/Grupo/:nome" element={<Grupo />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/PerfilEstatisticas" element={<PerfilEstatisticas id = '0' />} />
-        <Route path="/CriarEvento" element={<CriarEvento />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/CriarGrupo" element={<CriarGrupo />} />
+        <Route path="/ProximosEventos" elemento={<ProximosEventos />} />
       </Routes>
     </Router>
   );

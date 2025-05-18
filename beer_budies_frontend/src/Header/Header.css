@@ -82,6 +82,7 @@ body {
 
 .button-74:hover {
 	background-color: #fff;
+	transform: translate(-50%, -50%);
 }
 
 .button-74:active {

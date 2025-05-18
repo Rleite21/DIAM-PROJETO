@@ -23,3 +23,10 @@
 .footer-link:hover img {
   transform: scale(1.1);
 }
+
+.brand a {
+	text-align: center;
+	display: block;
+	content: url('../Header/BeerBuddies.png');
+	width: 7.1rem;
+}

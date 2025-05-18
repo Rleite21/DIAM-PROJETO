@@ -14,6 +14,71 @@ body {
 	margin: 0;
 }
 
-#map{
-    height: 300px;
+#map {
+    height: 90vh;
+    width: 70%;
+    margin: 2rem auto;
+    display: block;
+    border: 3px solid var(--primary);
+    border-radius: 12px;
 }
+
+.cluster-div {
+	background-color: white;
+	height: 3rem;
+	width: 3rem;
+	border-radius: 50%;
+	box-shadow: 0 0 4px;
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	color: var(--primary);
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.evento-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.button-mapa {
+    background-color: #fbeee0;
+	border: 2px solid #422800;
+	border-radius: 40px;
+	box-shadow: #422800 4px 4px 0 0;
+	color: #422800;
+	cursor: pointer;
+    padding: 15px 30px;
+    font-size: 20px;
+}
+
+.button-mapa:hover {
+	background-color: #ffa200;
+}
+
+.button-mapa:active {
+	box-shadow: #422800 2px 2px 0 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+
