@@ -1,13 +1,30 @@
-import React from "react";
-
+import { useState, createContext } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import '../cssFiles/LogIn.css';
 import Header from "../Header/Header";
+import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 
 
 function LogIn() {
+    const { setUserId } = useContext(UserContext);
+    const [username,setUsername]= useState('');
+    const [password,setPassword]= useState('');
     const navigate = useNavigate();
     const location = useLocation();
+
+    const submitHandler = async(e) => {
+        e.preventDefault();
+        try{
+            await axios.post('http://localhost:8000/beer_budies/api/login/', {username, password}, {withCredentials: true});
+            setUserId(response.data.user_id);
+            alert('Login successful!');
+            navigate('/');
+            } catch (error) {
+                alert('Login failed: ' + error.response.data.error);    
+
+        }
+    }
 
     return (
         <div className="app-container">
@@ -16,16 +33,15 @@ function LogIn() {
                 <div id="login_box">
                     <h1>Entrar</h1>
                     <p>Ainda não tens conta? <a href="/Register"><strong>Criar conta</strong></a></p>
-                    <form id="logIn_form">
+                    <form id="logIn_form" onSubmit={submitHandler}>
                         <label id="user_label">Nome de <strong>Usuário</strong> ou <strong>Email</strong></label>
-                        <input id="input_user" type="text"></input>
+                        <input id="input_user" type="text" value={username} onChange={(e)=>setUsername(e.target.value)}></input>
                         <label id="pass_label">Palavra-Passe</label>
-                        <input id="input_pass" type="password"></input>
+                        <input id="input_pass" type="password" value={password} onChange={(e)=>setPassword(e.target.value)}></input>
                         <input id="Save_Info" type="checkbox"></input><strong>Guardar Info </strong>
                         <button
                             id="LogIn_Button"
-                            type="button"
-                            onClick={() => navigate('/')}
+                            type="submit"
                         >
                             Entrar
                         </button>
@@ -37,3 +53,4 @@ function LogIn() {
 }
 
 export default LogIn;
+

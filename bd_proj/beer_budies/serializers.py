@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import (Classificacao, Grupo, Evento,  User, Bebida, UserBebida)
+from django.contrib.auth.models import User
+from .models import Classificacao, Grupo, Evento, UserInfo
 
 class ClassificacaoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,27 +20,10 @@ class EventoSerializer(serializers.ModelSerializer):
         model = Evento
         fields = '__all__'
 
-class BebidaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Bebida
-        fields = '__all__'
 
-class UserBebidaSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    bebida = serializers.PrimaryKeyRelatedField(queryset=Bebida.objects.all())
-
-    class Meta:
-        model = UserBebida
-        fields = '__all__'
-
-class UserSerializer(serializers.ModelSerializer):
+class UserInfoSerializer(serializers.ModelSerializer):
     classificacao = ClassificacaoSerializer()
-    grupos = serializers.PrimaryKeyRelatedField(many=True, queryset=Grupo.objects.all())
-    eventos = serializers.PrimaryKeyRelatedField(many=True, queryset=Evento.objects.all())
 
     class Meta:
-        model = User
-        fields = [
-            'id', 'total_bebidas', 'total_festas', 'classificacao', 'email', 'password',
-            'nome', 'username', 'data_entrada', 'grupos', 'eventos'
-        ]
+        model = UserInfo   # 👈 estava errado (era User), o correto é UserInfo
+        fields = '__all__'

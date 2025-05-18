@@ -1,10 +1,13 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate, login, logout
 from .models import Grupo,Evento
 from .serializers import GrupoSerializer, EventoSerializer
 from django.contrib.auth.models import User
+
 
 @api_view(['GET', 'POST'])
 def listar_grupos(request):
@@ -60,3 +63,33 @@ def login_view(request):
         return Response({'message': 'Logged in successfully'})
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+    
+
+@api_view(['GET'])
+def logout_view(request):
+    logout(request)
+    return Response({'message': 'Logged out successfully'})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_view(request):
+    return Response({'username': request.user.username})
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_id_view(request):
+    return Response({'user_id': request.user.id})
+
+@api_view(['GET'])
+def userInfo_view(request, user_id):
+    try:
+        user = User.objects.get(pk=user_id)
+        data = {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+        }
+        return Response(data, status=status.HTTP_200_OK)
+    except User.DoesNotExist:
+        return Response({'error': 'Utilizador não encontrado'}, status=status.HTTP_404_NOT_FOUND)

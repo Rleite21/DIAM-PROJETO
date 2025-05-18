@@ -55,7 +55,8 @@ MIDDLEWARE = [
 ]
 
 
-
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'bd_proj.urls'
 
@@ -107,6 +108,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
