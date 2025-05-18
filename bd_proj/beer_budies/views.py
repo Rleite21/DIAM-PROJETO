@@ -5,11 +5,12 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate, login, logout
-from .models import Grupo,Evento
-from .serializers import GrupoSerializer, EventoSerializer
+from .models import Grupo, Evento, UserBebida, Bebida
+from .serializers import GrupoSerializer, EventoSerializer, UserBebidaSerializer
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 
 @api_view(['GET', 'POST'])
@@ -96,3 +97,30 @@ def userInfo_view(request, user_id):
         return Response(data, status=status.HTTP_200_OK)
     except User.DoesNotExist:
         return Response({'error': 'Utilizador não encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def adicionar_bebida(request):
+    user = request.user
+    bebida_nome = request.data.get('bebida')
+    evento = request.data.get('evento')
+    local = request.data.get('local')
+    cervejas = request.data.get('cervejas')
+    coordenadas = request.data.get('coordenadas', '')
+    # Busca ou cria a bebida
+    bebida, _ = Bebida.objects.get_or_create(nome=bebida_nome)
+    user_bebida = UserBebida.objects.create(
+        user=user,
+        bebida=bebida,
+        data=timezone.now(),
+        coordenadas=coordenadas
+    )
+    return Response({'success': True})
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def listar_bebidas_user(request):
+    user = request.user
+    bebidas = UserBebida.objects.filter(user=user)
+    serializer = UserBebidaSerializer(bebidas, many=True)
+    return Response(serializer.data)
