@@ -29,7 +29,7 @@ const Grupos = () => {
       </div>
 
       <div>
-        <button className="criarGrupo-button" onClick={() => navigate('/createGroup')}>
+        <button className="criarGrupo-button" onClick={() => navigate('/criarGrupo')}>
           Criar Grupo
         </button>
       </div>
