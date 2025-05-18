@@ -74,3 +74,22 @@
 #toggle_eventos_button:hover {
     background-color: #e07b1a;
 }
+
+#proximos_eventos_container {
+    background-color: #323232;
+    padding: 15px;
+    border-radius: 15px;
+    position: fixed;
+    bottom: 70px;
+    right: -400px;
+    max-width: 300px;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+#proximos_eventos_container.open {
+    right: 70px;
+}

@@ -27,20 +27,6 @@ const ProximosEventos = () => {
       <div
         id="proximos_eventos_container"
         className={isOpen ? "open" : ""}
-        style={{
-          backgroundColor: "#323232",
-          padding: "15px",
-          borderRadius: "15px",
-          position: "fixed",
-          bottom: "70px",
-          right: isOpen ? "70px" : "-400px",
-          maxWidth: "300px",
-          zIndex: 1000,
-          transition: "right 0.3s ease",
-          color: "white",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-          textAlign: "center"
-        }}
       >
         <div className="proximos-eventos">
           <h2 style={{ color: "#ffa200" }}>Próximos Eventos:</h2>
