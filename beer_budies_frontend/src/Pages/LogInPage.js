@@ -9,23 +9,19 @@ function LogInPage(){
     const [username, setUsername] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/beer_budies/api/user/', { withCredentials: true })
-            .then(response => {
-                setUsername(response.data.username);
-            })
-            .catch(() => {
-                setUsername(null);
-            });
+        const token = localStorage.getItem('access');
+        if (token) {
+            setUsername('Utilizador autenticado');
+        } else {
+            setUsername(null);
+        }
     }, []);
 
-    const handleLogout = async () => {
-        try {
-            await axios.get('http://localhost:8000/beer_budies/api/logout/', { withCredentials: true });
-            setUsername(null);
-            navigate('/LogIn');
-        } catch (error) {
-            alert('Logout failed');
-        }
+    const handleLogout = () => {
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        setUsername(null);
+        navigate('/LogIn');
     };
 
     return (

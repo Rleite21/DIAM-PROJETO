@@ -100,19 +100,25 @@ def userInfo_view(request, user_id):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def adicionar_bebida(request):
-    user = request.user
-    bebida_nome = request.data.get('bebida')
+    bebida_nome = request.data.get('bebida') 
     evento = request.data.get('evento')
     local = request.data.get('local')
     cervejas = request.data.get('cervejas')
     coordenadas = request.data.get('coordenadas', '')
-    # Busca ou cria a bebida
-    bebida, _ = Bebida.objects.get_or_create(nome=bebida_nome)
-    user_bebida = UserBebida.objects.create(
+    user = request.user
+
+    bebida = None
+    if bebida_nome:
+        bebida, _ = Bebida.objects.get_or_create(nome=bebida_nome)
+
+    UserBebida.objects.create(
         user=user,
         bebida=bebida,
         data=timezone.now(),
-        coordenadas=coordenadas
+        coordenadas=coordenadas,
+        evento=evento,
+        cervejas=cervejas,
+        local=local
     )
     return Response({'success': True})
 
