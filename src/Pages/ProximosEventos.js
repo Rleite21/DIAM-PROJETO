@@ -20,23 +20,6 @@ const ProximosEventos = () => {
       <button
         id="toggle_eventos_button"
         onClick={() => setIsOpen(!isOpen)}
-        style={{
-          position: "fixed",
-          bottom: "70px", // just underneath Calculadora's 20px + 40px height + 10px gap
-          right: "20px",
-          backgroundColor: "#FA9020",
-          color: "black",
-          border: "2px solid black",
-          borderRadius: "50%",
-          width: "40px",
-          height: "40px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          cursor: "pointer",
-          zIndex: 1100,
-          fontSize: "1.5em"
-        }}
         title="Próximos Eventos"
       >
         {isOpen ? "⮜" : "📅"}

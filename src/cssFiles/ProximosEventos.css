@@ -51,3 +51,26 @@
 .proximos-eventos {
   padding: 18px 20px 10px 20px;
 }
+
+#toggle_eventos_button {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background-color: #FA9020;
+    color: black;
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1100;
+    font-size: 1.5em;
+    transition: background-color 0.3s;
+}
+
+#toggle_eventos_button:hover {
+    background-color: #e07b1a;
+}
