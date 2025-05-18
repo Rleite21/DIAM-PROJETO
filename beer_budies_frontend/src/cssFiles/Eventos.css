@@ -3,7 +3,7 @@
     position: fixed; /* Fixa o botão na posição */
     top: 150px; /* Centraliza verticalmente */
     right: 0px; /* Posiciona próximo à barra lateral */
-    background-color: #D4AF37; /* Cor de fundo */
+    background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
     color: #1C1C1C; /* Cor do texto */
     border: none; /* Remove bordas */
     border-radius: 10px; /* Bordas arredondadas */
@@ -34,7 +34,7 @@
     right: -300px; /* Esconde a barra lateral inicialmente */
     width: 300px; /* Define a largura da barra lateral */
     height: auto; /* Ocupa toda a altura da janela */
-    background-color: #D4AF37; /* Cor de fundo */
+    background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
     padding: 20px; /* Espaçamento interno */
     box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.5),
                 inset 2px 2px 5px rgba(0, 0, 0, 0.2),
@@ -68,5 +68,27 @@
     text-align: center;
 }
 
+#criar_evento_button{
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    padding: 14px 0;
+    width: 100%;
+    font-size: 1.15rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.2s;
+    margin-top: 18px;
+    letter-spacing: 1px;
+}
+
+#criar_evento_button:hover {
+    background: linear-gradient(90deg, #414345 0%, #232526 100%);
+    color: #ffd700;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+}
 
 

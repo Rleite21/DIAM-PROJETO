@@ -23,7 +23,7 @@
 }
 
 .card-button:hover {
-  background-color: #D4AF37 !important;
+  background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
   color: #000000 !important;
 }
 

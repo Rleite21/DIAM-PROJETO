@@ -41,7 +41,7 @@
 }
 
 .est_block {
-    background-color: #D4AF37; /* Cor de fundo dos retângulos */
+    background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
     color: #1C1C1C; /* Cor do texto */
     border-radius: 20px; /* Bordas arredondadas */
     padding: 20px; /* Espaçamento interno */
@@ -65,7 +65,6 @@
 }
 
 #classific {
-    background-color: #D4AF37; /* Cor de fundo do retângulo maior */
     color: #1C1C1C; /* Cor do texto */
     border-radius: 20px; /* Bordas arredondadas */
     padding: 20px; /* Espaçamento interno */

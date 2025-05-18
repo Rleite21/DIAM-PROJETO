@@ -43,7 +43,7 @@ form label {
     border-radius: 15px;
     width: 30%;
     height: 50%;
-    background-color: #D4AF37;
+    background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
     transition: transform 0.3s ease;
 }
 

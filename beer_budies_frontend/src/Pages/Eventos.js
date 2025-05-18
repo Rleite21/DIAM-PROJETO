@@ -25,9 +25,10 @@ function ProximosEventos() {
                 {eventos.map((evento, index) => (
                     <p key={index}><strong>{evento.nome}: {evento.data}</strong></p>
                 ))}
+                <button id="criar_evento_button" onClick={() => navigate('/CriarEvento')}>Criar evento</button>
             </div>
 
-            <button onClick={() => navigate('/CriarEvento')}>Criar evento</button>
+            
         </div>
     );
 }
