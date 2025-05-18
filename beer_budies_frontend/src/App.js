@@ -9,6 +9,7 @@ import Mapa from './Pages/mapa';
 import './App.css';
 import PerfilEstatisticas from './Pages/PerfilEstatisticas';
 import CriarGrupo from './Pages/CriarGrupo';
+import CriarEvento from './Pages/CriarEvento';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Grupo/:nome" element={<Grupo />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/PerfilEstatisticas" element={<PerfilEstatisticas id = '0' />} />
+        <Route path="/CriarEvento" element={<CriarEvento />} />
       </Routes>
     </Router>
   );

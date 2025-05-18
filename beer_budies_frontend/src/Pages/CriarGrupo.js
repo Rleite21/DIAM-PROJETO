@@ -3,10 +3,9 @@ import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import '../cssFiles/Grupos.css';
 import Header from '../Header/Header';
-import Grupos from './Grupos';
 
 
-const CriarGrupo = () => {
+function CriarGrupo(){
   const navigate = useNavigate(); 
   const [nomeG, setnomeG] = useState("");
   const [descG, setdescG] = useState("");

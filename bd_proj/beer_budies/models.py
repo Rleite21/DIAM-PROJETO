@@ -10,14 +10,11 @@ class Grupo(models.Model):
 
 class Evento(models.Model):
     nome = models.CharField(max_length=20)
-    universidade = models.ForeignKey('Universidade', on_delete=models.RESTRICT)
+    uni = models.CharField(max_length=20, default="")
     data = models.DateField()
-    hora = models.DateTimeField()
+    hora = models.TimeField()
     preco_J = models.FloatField()
-    preco_S = models.FloatField()
 
-class Universidade(models.Model):
-    sigla = models.CharField(max_length=10)
 
 class User(models.Model):
     total_bebidas = models.IntegerField(default=0)

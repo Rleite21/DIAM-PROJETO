@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import (Classificacao, Grupo, Evento, Universidade, User, Bebida, UserBebida)
+from .models import (Classificacao, Grupo, Evento,  User, Bebida, UserBebida)
 
 class ClassificacaoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,13 +11,9 @@ class GrupoSerializer(serializers.ModelSerializer):
         model = Grupo
         fields = '__all__'
 
-class UniversidadeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Universidade
-        fields = '__all__'
+
 
 class EventoSerializer(serializers.ModelSerializer):
-    universidade = UniversidadeSerializer()
 
     class Meta:
         model = Evento

@@ -11,7 +11,6 @@ import CriarGrupo from './CriarGrupo.js';
 const Grupos = () => {
   const navigate = useNavigate(); 
   const [grupos, setGrupos] = useState([]);
-  const [criarGrupo, setCriarGrupo] = useState(false);
   const ENDPOINT_URL = 'http://127.0.0.1:8000/beer_budies/api/grupos';
  
 
