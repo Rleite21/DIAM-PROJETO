@@ -9,7 +9,7 @@ import Mapa from './Pages/mapa';
 import './App.css';
 import PerfilEstatisticas from './Pages/PerfilEstatisticas';
 import Register from './Pages/Register';
-import CriarGrupo from './Pages/CriarGrupo';
+import CriarGrupo from './Pages/criarGrupo';
 import ProximosEventos from './Pages/Eventos';
 import CriarEvento from './Pages/CriarEvento';
 import LogInPage from './Pages/LogInPage';

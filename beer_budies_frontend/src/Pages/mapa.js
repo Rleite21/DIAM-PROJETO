@@ -1,4 +1,7 @@
 //para correr o mapa é necessário fazer "npm install leaflet" e "npm install leaflet.markercluster"
+//localStorage.setItem('token', 'fake-token'); // Simula o login do utilizador
+//localStorage.removeItem('token'); // Simula o logout do utilizador
+//localStorage.clear(); // Limpa o localStorage
 
 import React, { useEffect, useState } from 'react';
 import '../cssFiles/mapa.css';
@@ -13,6 +16,9 @@ function Mapa() {
         evento: '',
         cervejas: ''
     });
+
+    // Verifica se o user está autenticado (ajuste conforme o seu método)
+    const isLoggedIn = !!localStorage.getItem('token');
 
     useEffect(() => {
         if (!L.DomUtil.get('map')._leaflet_id) { 
@@ -52,13 +58,23 @@ function Mapa() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(
-            `Local: ${formData.local}\nEvento: ${formData.evento}\nCervejas: ${formData.cervejas}`
-        );
-        setShowForm(false);
-        setFormData({ local: '', evento: '', cervejas: '' });
+        const response = await fetch('/api/adicionar_bebida/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(formData)
+        });
+        if (response.ok) {
+            alert('Bebida registada com sucesso!');
+            setShowForm(false);
+            setFormData({ local: '', evento: '', cervejas: '' });
+        } else {
+            alert('Erro ao registar bebida.');
+        }
     };
 
     return (
@@ -66,50 +82,59 @@ function Mapa() {
             <h1></h1>
             <div id="map"></div>
 
-            <div className="button-container">
-                <button className="button-mapa" onClick={() => setShowForm((v) => !v)}>
-                    {showForm ? "Fechar formulário" : "Adicionar Evento"}
-                </button>
+            {isLoggedIn && (
+                <div className="button-container">
+                    <button
+                        className="button-mapa"
+                        onClick={() => setShowForm(v => !v)}
+                    >
+                        {showForm ? "Fechar formulário" : "Adicionar Bebida"}
+                    </button>
+                </div>
+            )}
+
+            <div className={`slide-form-container${showForm && isLoggedIn ? " open" : ""}`}>
+                <form className="evento-form" onSubmit={handleSubmit}>
+                    <label>
+                        Onde bebeu?
+                        <input
+                            type="text"
+                            name="local"
+                            value={formData.local}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Nome do evento:
+                        <input
+                            type="text"
+                            name="evento"
+                            value={formData.evento}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Quantas cervejas bebeu?
+                        <input
+                            type="number"
+                            name="cervejas"
+                            value={formData.cervejas}
+                            onChange={handleChange}
+                            min="1"
+                            required
+                        />
+                    </label>
+                    <button type="submit">Enviar</button>
+                </form>
             </div>
 
-            <div className={`slide-form-container${showForm ? " open" : ""}`}>
-                {showForm && (
-                    <form className="evento-form" onSubmit={handleSubmit}>
-                        <label>
-                            Onde bebeu?
-                            <input
-                                type="text"
-                                name="local"
-                                value={formData.local}
-                                onChange={handleChange}
-                                required
-                            />
-                        </label>
-                        <label>
-                            Nome do evento:
-                            <input
-                                type="text"
-                                name="evento"
-                                value={formData.evento}
-                                onChange={handleChange}
-                                required
-                            />
-                        </label>
-                        <label>
-                            Quantas cervejas bebeu?
-                            <input
-                                type="number"
-                                name="cervejas"
-                                value={formData.cervejas}
-                                onChange={handleChange}
-                                min="1"
-                                required
-                            />
-                        </label>
-                        <button type="submit">Enviar</button>
-                    </form>
-                )}
-            </div>
+            {!isLoggedIn && (
+                <div style={{ textAlign: "center", marginTop: "2rem" }}>
+                    <p>Faça login para adicionar eventos!</p>
+                </div>
+            )}
         </div>
     );
 }
