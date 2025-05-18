@@ -15,7 +15,7 @@ function LogIn() {
         e.preventDefault();
         try{
             await axios.post('http://127.0.0.1:8000/beer_budies/api/signup/', { username, password, email});
-            navigate('/');
+            navigate('/LogIn');
         } catch (error) {
             alert(`Signup failed`);
 

@@ -1,4 +1,5 @@
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -7,6 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Grupo,Evento
 from .serializers import GrupoSerializer, EventoSerializer
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 @api_view(['GET', 'POST'])
@@ -51,7 +54,7 @@ def signup(request):
     user = User.objects.create_user(username=username, password=password, email=email)
     return Response({'message': 'User ' + user.username + ' created successfully'}, status=status.HTTP_201_CREATED)
 
-
+@csrf_exempt
 @api_view(['POST'])
 def login_view(request):
     username = request.data.get('username')

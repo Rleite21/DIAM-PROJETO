@@ -12,11 +12,11 @@ import Register from './Pages/Register';
 import CriarGrupo from './Pages/CriarGrupo';
 import ProximosEventos from './Pages/Eventos';
 import CriarEvento from './Pages/CriarEvento';
-import { UserProvider } from './context/UserContext';
+import LogInPage from './Pages/LogInPage';
+
 
 function App() {
   return (
-    <UserProvider>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -27,10 +27,11 @@ function App() {
             <Route path="/Register" element={<Register />} />
             <Route path="/CriarGrupo" element={<CriarGrupo />} />
             <Route path="/CriarEvento" element={<CriarEvento />} />
+            <Route path="/LogInPage" element={<LogInPage />} />
             <Route path="/ProximosEventos" elemento={<ProximosEventos />} />
         </Routes>
       </Router>
-    </UserProvider>
+
     
   );
 }

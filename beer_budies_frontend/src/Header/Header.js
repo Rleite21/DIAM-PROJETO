@@ -43,7 +43,7 @@ function Header() {
                         <li className="nav__item"><Link to="/" className="nav__link">Home</Link></li>
                         <li className="nav__item"><Link to="/grupos" className="nav__link">Grupos</Link></li>
                         <li className="nav__item"><Link to="/PerfilEstatisticas" className="nav__link">Estatísticas</Link></li>
-                        <li className="nav__item"><Link to="/LogIn" className="nav__link">Login</Link></li>
+                        <li className="nav__item"><Link to="/LogInPage" className="nav__link">Login</Link></li>
                     </ul>
                 </div>
             </nav>
