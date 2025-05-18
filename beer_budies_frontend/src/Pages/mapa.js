@@ -1,4 +1,4 @@
-//para correr o mapa é necessário fazer "npm install leaflet" e "npm install leaflet.markercluster"
+//para correr o mapa é necessário fazer "c" e "npm install leaflet.markercluster"
 //localStorage.setItem('token', 'fake-token'); // Simula o login do utilizador
 //localStorage.removeItem('token'); // Simula o logout do utilizador
 //localStorage.clear(); // Limpa o localStorage
