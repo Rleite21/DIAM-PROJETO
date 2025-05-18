@@ -17,7 +17,6 @@ function LogIn() {
         e.preventDefault();
         try {
             await axios.post('http://localhost:8000/beer_budies/api/login/', {username, password},{withCredentials: true});
-            alert('Login successful!');
             navigate('/');
         } catch (error) {
             console.error("Erro detalhado:", error.response);
