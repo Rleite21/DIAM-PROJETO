@@ -22,6 +22,7 @@ class EventoSerializer(serializers.ModelSerializer):
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()  # nome do user automaticamente
     classificacao = ClassificacaoSerializer()
 
     class Meta:

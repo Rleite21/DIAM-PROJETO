@@ -31,7 +31,7 @@ const Grupos = () => {
             onClick={() => navigate('/login')} // Updated to match the correct route
           >
             <h3>{grupo.nome}</h3>
-            <p><strong>Nome:</strong> {grupo.nome}</p>
+            <p><strong>Membros:</strong> {grupo.num_membros}</p>
             <p><strong>Descrição:</strong> {grupo.descricao}</p>
           </button>
         ))}

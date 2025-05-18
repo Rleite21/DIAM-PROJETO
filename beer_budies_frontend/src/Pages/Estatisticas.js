@@ -2,7 +2,7 @@ import React from "react";
 import '../cssFiles/Estatisticas.css';
 
 
-function Estatisticas({user}){
+function Estatisticas({total_bebidas,total_festas,classificacao}){
    return( 
     <div>
         <hr />
@@ -10,15 +10,15 @@ function Estatisticas({user}){
         <div className="est_block_container">
             <div className="est_block">
                 <h3><strong>Bebidas</strong></h3>
-                <p>{user.total_bebidas}</p>
+                <p>{total_bebidas}</p>
             </div>
             <div className="est_block">
                 <h3><strong>Festas</strong></h3>
-                <p>{user.total_festas}</p>
+                <p>{total_festas}</p>
             </div>
             <div className="est_block" id="classific">
                 <h3><strong>Classificação</strong></h3>
-                <p>{user.classificacao}</p>
+                <p>{classificacao}</p>
             </div>
         </div>
     </div>

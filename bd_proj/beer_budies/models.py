@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Classificacao(models.Model):
     designacao = models.CharField(max_length=20)
@@ -17,11 +18,11 @@ class Evento(models.Model):
 
 
 class UserInfo(models.Model):
-    username = models.CharField(max_length=50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True) # 👈 Ligação direta ao User
     total_bebidas = models.IntegerField(default=0)
     total_festas = models.IntegerField(default=0)
     classificacao = models.ForeignKey('Classificacao', on_delete=models.SET_NULL, null=True)
-    data_entrada = models.DateField()
+    data_entrada = models.DateField(auto_now_add=True)
 
 
 

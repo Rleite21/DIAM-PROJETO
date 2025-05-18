@@ -54,7 +54,6 @@ def signup(request):
     user = User.objects.create_user(username=username, password=password, email=email)
     return Response({'message': 'User ' + user.username + ' created successfully'}, status=status.HTTP_201_CREATED)
 
-@csrf_exempt
 @api_view(['POST'])
 def login_view(request):
     username = request.data.get('username')
