@@ -16,12 +16,17 @@ function LogIn() {
     const submitHandler = async(e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8000/beer_budies/api/login/', {username, password},{withCredentials: true});
+            const response = await axios.post('http://localhost:8000/beer_budies/api/token/', {
+                username,
+                password
+            });
+            // Guarda o token JWT
+            localStorage.setItem('access', response.data.access);
+            localStorage.setItem('refresh', response.data.refresh);
             alert('Login successful!');
             navigate('/');
         } catch (error) {
-            console.error("Erro detalhado:", error.response);
-            alert('Login failed: ' + (error.response?.data?.error || error.message));    
+            alert('Login failed: ' + (error.response?.data?.detail || error.message));
         }
     }
 

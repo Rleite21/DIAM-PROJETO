@@ -3,7 +3,7 @@
 //localStorage.removeItem('token'); // Simula o logout do utilizador
 //localStorage.clear(); // Limpa o localStorage
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../cssFiles/mapa.css';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -14,23 +14,26 @@ function Mapa() {
     const [formData, setFormData] = useState({
         local: '',
         evento: '',
-        cervejas: ''
+        cervejas: '',
+        coordenadas: ''
     });
 
-    // Verifica se o user está autenticado (ajuste conforme o seu método)
-    const isLoggedIn = !!localStorage.getItem('token');
+    const isLoggedIn = !!localStorage.getItem('access');
+    const mapRef = useRef(null);
+
+
+    const customIcon = L.icon({
+        iconUrl: require('../Icons/PINGbeer.png'),
+        iconSize: [38, 38],
+    });
 
     useEffect(() => {
-        if (!L.DomUtil.get('map')._leaflet_id) { 
+        if (!L.DomUtil.get('map')._leaflet_id) {
             const map = L.map("map").setView([38.75441377685015, -9.152601469815817], 13);
+            mapRef.current = map;
             L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 maxZoom: 19,
             }).addTo(map);
-
-            const customIcon = L.icon({
-                iconUrl: require('../Icons/PINGbeer.png'),
-                iconSize: [38, 38],
-            });
 
             const myClusterLayer = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
@@ -52,7 +55,33 @@ function Mapa() {
 
             map.addLayer(myClusterLayer);
         }
-    }, []); 
+    }, []);
+
+    useEffect(() => {
+        if (isLoggedIn && mapRef.current) {
+            fetch('http://localhost:8000/beer_budies/api/minhas_bebidas/', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('access')}`
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    data.forEach(bebida => {
+                        if (bebida.coordenadas) {
+                            const [lat, lng] = bebida.coordenadas.split(',').map(Number);
+                            L.marker([lat, lng], {icon: customIcon})
+                                .addTo(mapRef.current)
+                                .bindPopup(`<h3>${bebida.evento || 'Evento'}</h3><p>${bebida.local || ''}</p>`);
+                        }
+                    });
+                } else {
+                    // Mostra erro no console para debug
+                    console.error('Resposta inesperada da API:', data);
+                }
+            });
+        }
+    }, [isLoggedIn, customIcon]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -60,18 +89,18 @@ function Mapa() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/adicionar_bebida/', {
+        const response = await fetch('http://localhost:8000/beer_budies/api/adicionar_bebida/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('access')}`
             },
             body: JSON.stringify(formData)
         });
         if (response.ok) {
             alert('Bebida registada com sucesso!');
             setShowForm(false);
-            setFormData({ local: '', evento: '', cervejas: '' });
+            setFormData({ local: '', evento: '', cervejas: '', coordenadas: '' });
         } else {
             alert('Erro ao registar bebida.');
         }
@@ -112,7 +141,6 @@ function Mapa() {
                             name="evento"
                             value={formData.evento}
                             onChange={handleChange}
-                            required
                         />
                     </label>
                     <label>
@@ -123,6 +151,17 @@ function Mapa() {
                             value={formData.cervejas}
                             onChange={handleChange}
                             min="1"
+                            required
+                        />
+                    </label>
+                    <label>
+                        Coordenadas (lat,lng):
+                        <input
+                            type="text"
+                            name="coordenadas"
+                            value={formData.coordenadas}
+                            onChange={handleChange}
+                            placeholder="Ex: 38.7544,-9.1526"
                             required
                         />
                     </label>
