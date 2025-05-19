@@ -21,7 +21,7 @@ function Mapa({ onBebidaAdicionada }) {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('access'));
     const mapRef = useRef(null);
     const coordenadasInputRef = useRef(null);
-    const clusterLayerRef = useRef(null);
+    const markersRef = useRef([]);
 
     const customIcon = L.icon({
         iconUrl: require('../Icons/PINGbeer.png'),
@@ -36,56 +36,60 @@ function Mapa({ onBebidaAdicionada }) {
     }, []);
 
     useEffect(() => {
-        if (!L.DomUtil.get('map')._leaflet_id) {
-            const map = L.map("map").setView([38.75441377685015, -9.152601469815817], 13);
+        let map = mapRef.current;
+        if (!map) {
+            map = L.map("map").setView([38.75441377685015, -9.152601469815817], 13);
             mapRef.current = map;
             L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 maxZoom: 19,
             }).addTo(map);
-
-            // Remove cluster layer antigo se existir
-            if (clusterLayerRef.current && map.hasLayer(clusterLayerRef.current)) {
-                map.removeLayer(clusterLayerRef.current);
-            }
-
-            const myClusterLayer = L.markerClusterGroup({
-                iconCreateFunction: function(cluster) {
-                    return L.divIcon({
-                        html: '<div class="cluster-div">' + cluster.getChildCount() + '</div>',
-                    });
-                }
-            });
-            clusterLayerRef.current = myClusterLayer;
-            map.addLayer(myClusterLayer);
         }
     }, []);
 
     useEffect(() => {
         return () => {
-            if (mapRef.current && clusterLayerRef.current && mapRef.current.hasLayer(clusterLayerRef.current)) {
-                mapRef.current.removeLayer(clusterLayerRef.current);
+            if (mapRef.current) {
+                mapRef.current.remove();
+                mapRef.current = null;
             }
         };
     }, []);
 
     useEffect(() => {
-        if (mapRef.current) {
-            mapRef.current.on('click', function(e) {
-                const coords = `${e.latlng.lat},${e.latlng.lng}`;
-                setFormData((f) => ({ ...f, coordenadas: coords }));
-                setShowForm(true);
-                setTimeout(() => {
-                    if (coordenadasInputRef.current) {
-                        coordenadasInputRef.current.focus();
-                    }
-                }, 100);
-            });
-        }
-    }, [mapRef.current]);
+        if (!mapRef.current) return;
+
+        const handleMapClick = function(e) {
+            const coords = `${e.latlng.lat},${e.latlng.lng}`;
+            setFormData((f) => ({ ...f, coordenadas: coords }));
+            setShowForm(true);
+            setTimeout(() => {
+                if (coordenadasInputRef.current) {
+                    coordenadasInputRef.current.focus();
+                }
+            }, 100);
+        };
+
+        mapRef.current.on('click', handleMapClick);
+
+        return () => {
+            if (mapRef.current) {
+                mapRef.current.off('click', handleMapClick);
+            }
+        };
+    }, []);
+
+    // Função para limpar todos os marcadores do mapa
+    const clearMarkers = () => {
+        markersRef.current.forEach(marker => marker.remove());
+        markersRef.current = [];
+    };
 
     useEffect(() => {
-        if (isLoggedIn && mapRef.current && clusterLayerRef.current) {
-            clusterLayerRef.current.clearLayers(); // Limpa clusters antigos
+        if (
+            isLoggedIn &&
+            mapRef.current
+        ) {
+            clearMarkers();
             fetch('http://localhost:8000/beer_budies/api/minhas_bebidas/', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('access')}`
@@ -99,11 +103,14 @@ function Mapa({ onBebidaAdicionada }) {
                             const [lat, lng] = bebida.coordenadas.split(',').map(Number);
                             const marker = L.marker([lat, lng], {icon: customIcon})
                                 .bindPopup(`<h3>${bebida.evento || 'Evento'}</h3><p>${bebida.local || ''}</p>`);
-                            clusterLayerRef.current.addLayer(marker);
+                            marker.addTo(mapRef.current);
+                            markersRef.current.push(marker);
                         }
                     });
                 }
             });
+        } else {
+            clearMarkers();
         }
     }, [isLoggedIn, customIcon]);
 
@@ -124,16 +131,32 @@ function Mapa({ onBebidaAdicionada }) {
         if (response.ok) {
             alert('Bebida registada com sucesso!');
             setShowForm(false);
-
-            if (formData.coordenadas && clusterLayerRef.current) {
-                const [lat, lng] = formData.coordenadas.split(',').map(Number);
-                const marker = L.marker([lat, lng], { icon: customIcon })
-                    .bindPopup(`<h3>${formData.evento || 'Evento'}</h3><p>${formData.local || ''}</p>`);
-                clusterLayerRef.current.addLayer(marker);
-            }
-
             setFormData({ local: '', evento: '', cervejas: '', coordenadas: '' });
             if (onBebidaAdicionada) onBebidaAdicionada();
+
+            // Atualiza os pinpoints no mapa
+            if (isLoggedIn && mapRef.current) {
+                clearMarkers();
+                fetch('http://localhost:8000/beer_budies/api/minhas_bebidas/', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access')}`
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        data.forEach(bebida => {
+                            if (bebida.coordenadas) {
+                                const [lat, lng] = bebida.coordenadas.split(',').map(Number);
+                                const marker = L.marker([lat, lng], {icon: customIcon})
+                                    .bindPopup(`<h3>${bebida.evento || 'Evento'}</h3><p>${bebida.local || ''}</p>`);
+                                marker.addTo(mapRef.current);
+                                markersRef.current.push(marker);
+                            }
+                        });
+                    }
+                });
+            }
         } else {
             alert('Erro ao registar bebida.');
         }
