@@ -4,6 +4,8 @@ import Estatisticas from "./Estatisticas.js";
 import Header from "../Header/Header.js";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Historico from "./Historico.js";
+import Footer from "../Pages/Footer.js";
 
 function PerfilEstatisticas() {
     const [user, setUser] = useState(null);
@@ -33,6 +35,8 @@ function PerfilEstatisticas() {
                 total_festas={user.total_festas}
                 classificacao={user.classificacao}
             />
+            <Historico/>
+            <Footer/>
         </>
     );
 }

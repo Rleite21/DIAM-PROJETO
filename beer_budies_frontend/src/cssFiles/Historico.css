@@ -1,0 +1,66 @@
+.historico-container {
+    margin: 2rem auto;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    margin: 2rem auto;
+}
+
+.historico-title {
+    color: #1C1C1C;
+    text-align: center; 
+    font-size: 30px; 
+    font-weight: bold; 
+    margin: 20px 0;
+    animation: fadeInAndPulse 3s ease-in-out; 
+    
+}
+
+.historico-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.historico-list::-webkit-scrollbar {
+    width: 8px;
+    background: #fffbe6;
+}
+
+.historico-list::-webkit-scrollbar-thumb {
+    background: #FA9020;
+    border-radius: 8px;
+}
+
+.historico-item {
+    width: 50%;
+    margin-bottom: 1.2em;
+    padding: 1em;
+    border: 3px solid #FA9020;
+    border-radius: 8px;
+    background: #fffbe6;
+    transition: box-shadow 0.2s;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.historico-item:hover {
+    box-shadow: 0 2px 8px rgba(250,144,32,0.12);
+}
+
+.historico-evento {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #FA9020;
+    margin-bottom: 0.3em;
+}
+
+.historico-label {
+    color: #422800;
+    font-weight: bold;
+}
+
+.historico-coords {
+    font-size: 0.95em;
+    color: #888;
+    margin-top: 0.3em;
+}

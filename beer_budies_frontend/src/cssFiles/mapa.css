@@ -47,7 +47,7 @@ body {
     z-index: 1000;
 }
 .evento-form {
-    background: white;
+    background: #fffbe6;
     padding: 2rem;
     border-radius: 10px;
     display: flex;
