@@ -1,15 +1,17 @@
 import React from "react";
 import '../cssFiles/Profile.css';
+import { useNavigate } from "react-router-dom";
 
-function Profile({username,date_entrada}) {
+function Profile({username, date_entrada}) {
+    const navigate = useNavigate();
 
     return (
         <div>
             <div id="titulo">
                 <h1><strong>Perfil</strong></h1>
-                <button id="settings">
-                <img src="https://cdn-icons-png.flaticon.com/512/503/503849.png " alt="Decorative" />
-                    </button>
+                <button id="settings" onClick={() => navigate('/settings')}>
+                    <img src="https://cdn-icons-png.flaticon.com/512/503/503849.png" alt="Decorative" />
+                </button>
             </div>
             
             <hr />

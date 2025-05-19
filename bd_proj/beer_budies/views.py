@@ -76,10 +76,22 @@ def logout_view(request):
     return Response({'message': 'Logged out successfully'})
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def user_view(request):
     user = request.user
+
+    if request.method == 'PATCH':
+        data = request.data
+        if 'username' in data:
+            user.username = data['username']
+        if 'email' in data:
+            user.email = data['email']
+        if 'password' in data:
+            user.set_password(data['password'])
+        user.save()
+        return Response({'success': True})
+
     try:
         userinfo = user.userinfo
     except UserInfo.DoesNotExist:
@@ -95,6 +107,7 @@ def user_view(request):
 
     return Response({
         'username': user.username,
+        'email': user.email,
         'data_entrada': data_entrada,
         'total_bebidas': total_bebidas,
         'total_festas': total_festas,

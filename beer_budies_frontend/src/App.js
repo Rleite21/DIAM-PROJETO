@@ -13,7 +13,7 @@ import CriarGrupo from './Pages/criarGrupo';
 import ProximosEventos from './Pages/Eventos';
 import CriarEvento from './Pages/CriarEvento';
 import LogInPage from './Pages/LogInPage';
-
+import Settings from './Pages/Settings';
 
 function App() {
   return (
@@ -28,7 +28,8 @@ function App() {
             <Route path="/CriarGrupo" element={<CriarGrupo />} />
             <Route path="/CriarEvento" element={<CriarEvento />} />
             <Route path="/LogInPage" element={<LogInPage />} />
-            <Route path="/ProximosEventos" elemento={<ProximosEventos />} />
+            <Route path="/ProximosEventos" element={<ProximosEventos />} />
+            <Route path='/settings' element={<Settings />} />
         </Routes>
       </Router>
 
