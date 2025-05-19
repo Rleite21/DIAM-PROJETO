@@ -162,3 +162,13 @@ def listar_bebidas_user(request):
     bebidas = UserBebida.objects.filter(user=user)
     serializer = UserBebidaSerializer(bebidas, many=True)
     return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def apagar_bebida(request, bebida_id):
+    try:
+        bebida = UserBebida.objects.get(id=bebida_id, user=request.user)
+        bebida.delete()
+        return Response({'success': True})
+    except UserBebida.DoesNotExist:
+        return Response({'error': 'Evento não encontrado'}, status=404)

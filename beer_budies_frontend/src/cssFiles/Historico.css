@@ -32,6 +32,7 @@
 }
 
 .historico-item {
+    position: relative;
     width: 50%;
     margin-bottom: 1.2em;
     padding: 1em;
@@ -63,4 +64,26 @@
     font-size: 0.95em;
     color: #888;
     margin-top: 0.3em;
+}
+
+.historico-apagar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FA9020;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 0.4em;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.historico-apagar:hover {
+    background: #c96d00;
 }

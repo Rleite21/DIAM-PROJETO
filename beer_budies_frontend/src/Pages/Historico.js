@@ -8,6 +8,11 @@ function Historico() {
     const pageSize = 3;
 
     useEffect(() => {
+        fetchHistorico();
+    }, []);
+
+    function fetchHistorico() {
+        setLoading(true);
         fetch('http://localhost:8000/beer_budies/api/minhas_bebidas/', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access')}`
@@ -21,7 +26,24 @@ function Historico() {
             setLoading(false);
         })
         .catch(() => setLoading(false));
-    }, []);
+    }
+
+    function apagarEvento(id) {
+        fetch(`http://localhost:8000/beer_budies/api/apagar_bebida/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                setHistorico(historico => historico.filter(ev => ev.id !== id));
+            } else {
+                alert(data.error || "Erro ao apagar evento.");
+            }
+        });
+    }
 
     if (loading) return <div className="historico-container">A carregar histórico...</div>;
     if (historico.length === 0) return <div className="historico-container">Sem eventos registados.</div>;
@@ -44,6 +66,15 @@ function Historico() {
                             </div>
                         )}
                         <div className="historico-coords"><span className="historico-label">Coordenadas:</span> {ev.coordenadas}</div>
+                        <button
+                            className="historico-apagar"
+                            onClick={() => apagarEvento(ev.id)}
+                            title="Apagar evento"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24">
+                                <path fill="#fff" d="M9 3V4H4V6H5V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V6H20V4H15V3H9ZM7 6H17V19H7V6ZM9 8V17H11V8H9ZM13 8V17H15V8H13Z"/>
+                            </svg>
+                        </button>
                     </li>
                 ))}
             </ul>
