@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import '../cssFiles/Estatisticas.css';
 
 
 function Estatisticas({total_bebidas,total_festas,classificacao}){
+
+   useEffect(() => {
+       fetch('http://localhost:8000/beer_budies/api/user/', {
+           headers: {
+               'Authorization': `Bearer ${localStorage.getItem('access')}`
+           }
+       });
+   }, []);
+
    return( 
     <div>
         <hr />

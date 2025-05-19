@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,24 @@ function Header() {
 
     const isGruposPage = location.pathname === '/grupos';
     const isGrupoPage = location.pathname.startsWith('/Grupo');
+
+    const [totalCervejas, setTotalCervejas] = useState(null);
+    const isLoggedIn = !!localStorage.getItem('access');
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            fetch('http://localhost:8000/beer_budies/api/user/', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('access')}`
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                setTotalCervejas(data.total_bebidas || 0);
+            })
+            .catch(() => setTotalCervejas(0));
+        }
+    }, [isLoggedIn]);
 
     return (
         <div>
@@ -24,14 +42,21 @@ function Header() {
                     </div>
                 ) : (
                     <div>
-                        <h1>Este mês já bebeste:</h1>
-                        <button
-                            className="button-74"
-                            role="button"
-                            onClick={() => navigate('/LogIn')}
-                        >
-                            Começa a contar!
-                        </button>
+                        {isLoggedIn ? (
+                            <h1>Este mês já bebeste: <br/>
+                                <span className='cervejas-numero'>{totalCervejas}</span></h1>
+                        ) : (
+                            <>
+                                <h1>Este mês já bebeste:</h1>
+                                <button
+                                    className="button-74"
+                                    role="button"
+                                    onClick={() => navigate('/LogIn')}
+                                >
+                                    Começa a contar!
+                                </button>
+                            </>
+                        )}
                     </div>
                 )}
             </header>

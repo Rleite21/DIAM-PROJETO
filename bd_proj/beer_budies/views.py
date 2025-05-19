@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.db import models
 
 
 @api_view(['GET', 'POST'])
@@ -77,7 +78,9 @@ def logout_view(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def user_view(request):
-    return Response({'username': request.user.username})
+    user = request.user
+    total_bebidas = UserBebida.objects.filter(user=user).aggregate(total=models.Sum('cervejas'))['total'] or 0
+    return Response({'total_bebidas': total_bebidas})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
