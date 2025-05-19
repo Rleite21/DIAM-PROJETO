@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../cssFiles/Historico.css';
 
-function Historico() {
+function Historico({ onAtualizarContador }) {
     const [historico, setHistorico] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0);
@@ -39,6 +39,7 @@ function Historico() {
         .then(data => {
             if (data.success) {
                 setHistorico(historico => historico.filter(ev => ev.id !== id));
+                if (onAtualizarContador) onAtualizarContador(); // Atualiza Header e Estatísticas!
             } else {
                 alert(data.error || "Erro ao apagar evento.");
             }
