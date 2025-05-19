@@ -109,7 +109,9 @@ function Mapa() {
     return (
         <div className="map-container">
             <h1></h1>
-            <div id="map"></div>
+            <div className="map-wrapper">
+                <div id="map"></div>
+            </div>
 
             {isLoggedIn && (
                 <div className="button-container">
@@ -125,7 +127,7 @@ function Mapa() {
             <div className={`slide-form-container${showForm && isLoggedIn ? " open" : ""}`}>
                 <form className="evento-form" onSubmit={handleSubmit}>
                     <label>
-                        Onde bebeu?
+                        Onde bebeu?*
                         <input
                             type="text"
                             name="local"
@@ -144,7 +146,7 @@ function Mapa() {
                         />
                     </label>
                     <label>
-                        Quantas cervejas bebeu?
+                        Quantas cervejas bebeu?*
                         <input
                             type="number"
                             name="cervejas"
@@ -155,7 +157,7 @@ function Mapa() {
                         />
                     </label>
                     <label>
-                        Coordenadas (lat,lng):
+                        Coordenadas (lat,lng)*:
                         <input
                             type="text"
                             name="coordenadas"
