@@ -7,7 +7,8 @@ class Classificacao(models.Model):
 class Grupo(models.Model):
     nome = models.CharField(max_length=20, blank=False, null=False)
     descricao = models.CharField(max_length=820, blank=False, null=False)
-    num_membros=models.IntegerField(default=0)
+    num_membros = models.IntegerField(default=0)
+    membros = models.ManyToManyField(User, related_name="grupos")
 
 class Evento(models.Model):
     nome = models.CharField(max_length=20)

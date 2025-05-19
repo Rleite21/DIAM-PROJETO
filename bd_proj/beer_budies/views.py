@@ -172,3 +172,38 @@ def apagar_bebida(request, bebida_id):
         return Response({'success': True})
     except UserBebida.DoesNotExist:
         return Response({'error': 'Evento não encontrado'}, status=404)
+
+@api_view(['GET'])
+def grupo_detail(request, grupo_id):
+    try:
+        grupo = Grupo.objects.get(id=grupo_id)
+        return Response({
+            "id": grupo.id,
+            "nome": grupo.nome,
+            "descricao": grupo.descricao,
+            "num_membros": grupo.num_membros,
+        })
+    except Grupo.DoesNotExist:
+        return Response({"error": "Grupo não encontrado"}, status=404)
+
+@api_view(['GET'])
+def grupo_membros(request, grupo_id):
+    try:
+        grupo = Grupo.objects.get(id=grupo_id)
+        membros = grupo.membros.all()
+        return Response([{"id": m.id, "username": m.username} for m in membros])
+    except Grupo.DoesNotExist:
+        return Response({"error": "Grupo não encontrado"}, status=404)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def juntar_ao_grupo(request, grupo_id):
+    try:
+        grupo = Grupo.objects.get(id=grupo_id)
+        user = request.user
+        grupo.membros.add(user)
+        grupo.num_membros = grupo.membros.count()
+        grupo.save()
+        return Response({'success': True})
+    except Grupo.DoesNotExist:
+        return Response({'error': 'Grupo não encontrado'}, status=404)

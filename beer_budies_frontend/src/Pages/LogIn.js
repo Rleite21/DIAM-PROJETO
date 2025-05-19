@@ -20,10 +20,16 @@ function LogIn() {
                 username,
                 password
             });
-            // Guarda o token JWT
+            //guarda o token JWT
             localStorage.setItem('access', response.data.access);
             localStorage.setItem('refresh', response.data.refresh);
-            alert('Login successful!');
+
+            //identifica e guarda o id do utilizador autenticado
+            const idRes = await axios.get('http://localhost:8000/beer_budies/api/user/id/', {
+                headers: { 'Authorization': `Bearer ${response.data.access}` }
+            });
+            localStorage.setItem('user_id', idRes.data.user_id);
+
             navigate('/');
         } catch (error) {
             alert('Login failed: ' + (error.response?.data?.detail || error.message));

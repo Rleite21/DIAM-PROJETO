@@ -20,6 +20,9 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/apagar_bebida/<int:bebida_id>/', views.apagar_bebida),
+    path('api/grupos/<int:grupo_id>/', views.grupo_detail),           
+    path('api/grupos/<int:grupo_id>/membros/', views.grupo_membros), 
+    path('api/grupos/<int:grupo_id>/juntar/', views.juntar_ao_grupo),
 ]
 
 

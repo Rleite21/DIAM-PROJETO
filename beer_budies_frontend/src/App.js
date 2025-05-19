@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Grupos" element={<Grupos />} />
-            <Route path="/Grupo/:nome" element={<Grupo />} />
+            <Route path="/Grupo/:id" element={<Grupo />} />
             <Route path="/LogIn" element={<LogIn />} />
             <Route path="/PerfilEstatisticas" element={<PerfilEstatisticas id = '0' />} />
             <Route path="/Register" element={<Register />} />

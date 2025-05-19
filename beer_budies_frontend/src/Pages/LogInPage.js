@@ -20,6 +20,7 @@ function LogInPage(){
     const handleLogout = () => {
         localStorage.removeItem('access');
         localStorage.removeItem('refresh');
+        localStorage.removeItem('user_id'); // <limpa o id do utilizador, é necessário para os grupos funcionarem, pq tava a ficar com o mm id quando trocava de conta
         setUsername(null);
         navigate('/LogIn');
     };
