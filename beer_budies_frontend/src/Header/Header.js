@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate, useParams } from 'react-router-dom';
 import './Header.css';
-import { useParams } from 'react-router-dom';
 
-function Header() {
+function Header({ refreshTrigger }) {
     const location = useLocation();
     const { nome } = useParams();
     const navigate = useNavigate();
@@ -27,7 +26,7 @@ function Header() {
             })
             .catch(() => setTotalCervejas(0));
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, refreshTrigger]);
 
     return (
         <div>

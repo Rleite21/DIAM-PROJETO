@@ -52,7 +52,8 @@ body {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 8px;
+    border: 4px solid #FA9020
 }
 
 .button-mapa {
@@ -66,7 +67,7 @@ body {
     font-size: 20px;
 }
 
-.button-mapa:hover {
+.button-mapa:hover, .geobutton:hover, .submit-button:hover {
 	background-color: #ffa200;
 }
 
@@ -98,9 +99,31 @@ body {
 .slide-form-container.open {
     max-height: 500px;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     padding: 1rem;
     opacity: 1;
 }
 
+.geobutton{
+    margin-top: -15px;
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 40px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    padding: 5px 5px;
+    font-size: 15px;
+}
 
+.submit-button{
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 40px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    padding: 15px 15px;
+    font-size: 15px;
+}
 

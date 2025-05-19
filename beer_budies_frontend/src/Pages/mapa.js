@@ -9,7 +9,7 @@ import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster';
 
-function Mapa() {
+function Mapa({ onBebidaAdicionada }) {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         local: '',
@@ -18,14 +18,22 @@ function Mapa() {
         coordenadas: ''
     });
 
-    const isLoggedIn = !!localStorage.getItem('access');
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('access'));
     const mapRef = useRef(null);
-
+    const coordenadasInputRef = useRef(null);
+    const clusterLayerRef = useRef(null);
 
     const customIcon = L.icon({
         iconUrl: require('../Icons/PINGbeer.png'),
         iconSize: [38, 38],
     });
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsLoggedIn(!!localStorage.getItem('access'));
+        }, 500);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         if (!L.DomUtil.get('map')._leaflet_id) {
@@ -35,6 +43,11 @@ function Mapa() {
                 maxZoom: 19,
             }).addTo(map);
 
+            // Remove cluster layer antigo se existir
+            if (clusterLayerRef.current && map.hasLayer(clusterLayerRef.current)) {
+                map.removeLayer(clusterLayerRef.current);
+            }
+
             const myClusterLayer = L.markerClusterGroup({
                 iconCreateFunction: function(cluster) {
                     return L.divIcon({
@@ -42,23 +55,37 @@ function Mapa() {
                     });
                 }
             });
-            const market1 = L.marker([38.74799571383414, -9.153464619121293], {icon: customIcon}).addTo(map);
-            market1.bindPopup("<h3>Arraial da TAISCTE</h3>");
-            const market2 = L.marker([38.747293968592224, -9.152703276949321], {icon: customIcon}).addTo(map);
-            market2.bindPopup("<h3>Tarde na Wish</h3>");
-            const market3 = L.marker([38.75933741650186, -9.154576031520174], {icon: customIcon}).addTo(map);
-            market3.bindPopup("<h3>Pós ensaio da Tuna</h3>");
-
-            myClusterLayer.addLayer(market1);
-            myClusterLayer.addLayer(market2);
-            myClusterLayer.addLayer(market3);
-
+            clusterLayerRef.current = myClusterLayer;
             map.addLayer(myClusterLayer);
         }
     }, []);
 
     useEffect(() => {
-        if (isLoggedIn && mapRef.current) {
+        return () => {
+            if (mapRef.current && clusterLayerRef.current && mapRef.current.hasLayer(clusterLayerRef.current)) {
+                mapRef.current.removeLayer(clusterLayerRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (mapRef.current) {
+            mapRef.current.on('click', function(e) {
+                const coords = `${e.latlng.lat},${e.latlng.lng}`;
+                setFormData((f) => ({ ...f, coordenadas: coords }));
+                setShowForm(true);
+                setTimeout(() => {
+                    if (coordenadasInputRef.current) {
+                        coordenadasInputRef.current.focus();
+                    }
+                }, 100);
+            });
+        }
+    }, [mapRef.current]);
+
+    useEffect(() => {
+        if (isLoggedIn && mapRef.current && clusterLayerRef.current) {
+            clusterLayerRef.current.clearLayers(); // Limpa clusters antigos
             fetch('http://localhost:8000/beer_budies/api/minhas_bebidas/', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('access')}`
@@ -70,14 +97,11 @@ function Mapa() {
                     data.forEach(bebida => {
                         if (bebida.coordenadas) {
                             const [lat, lng] = bebida.coordenadas.split(',').map(Number);
-                            L.marker([lat, lng], {icon: customIcon})
-                                .addTo(mapRef.current)
+                            const marker = L.marker([lat, lng], {icon: customIcon})
                                 .bindPopup(`<h3>${bebida.evento || 'Evento'}</h3><p>${bebida.local || ''}</p>`);
+                            clusterLayerRef.current.addLayer(marker);
                         }
                     });
-                } else {
-                    // Mostra erro no console para debug
-                    console.error('Resposta inesperada da API:', data);
                 }
             });
         }
@@ -100,7 +124,16 @@ function Mapa() {
         if (response.ok) {
             alert('Bebida registada com sucesso!');
             setShowForm(false);
+
+            if (formData.coordenadas && clusterLayerRef.current) {
+                const [lat, lng] = formData.coordenadas.split(',').map(Number);
+                const marker = L.marker([lat, lng], { icon: customIcon })
+                    .bindPopup(`<h3>${formData.evento || 'Evento'}</h3><p>${formData.local || ''}</p>`);
+                clusterLayerRef.current.addLayer(marker);
+            }
+
             setFormData({ local: '', evento: '', cervejas: '', coordenadas: '' });
+            if (onBebidaAdicionada) onBebidaAdicionada();
         } else {
             alert('Erro ao registar bebida.');
         }
@@ -158,16 +191,38 @@ function Mapa() {
                     </label>
                     <label>
                         Coordenadas (lat,lng)*:
-                        <input
-                            type="text"
-                            name="coordenadas"
-                            value={formData.coordenadas}
-                            onChange={handleChange}
-                            placeholder="Ex: 38.7544,-9.1526"
-                            required
-                        />
                     </label>
-                    <button type="submit">Enviar</button>
+                    <button className='geobutton'
+                        type="button"
+                        onClick={() => {
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(
+                                    (pos) => {
+                                        const coords = `${pos.coords.latitude},${pos.coords.longitude}`;
+                                        setFormData((f) => ({ ...f, coordenadas: coords }));
+                                        if (coordenadasInputRef.current) {
+                                            coordenadasInputRef.current.focus();
+                                        }
+                                    },
+                                    () => alert("Não foi possível obter a localização.")
+                                );
+                            } else {
+                                alert("Geolocalização não suportada.");
+                            }
+                        }}
+                    >
+                        Usar a minha localização
+                    </button>
+                    <input
+                        type="text"
+                        name="coordenadas"
+                        value={formData.coordenadas}
+                        onChange={handleChange}
+                        placeholder="Ex: 38.7544,-9.1526"
+                        required
+                        ref={coordenadasInputRef}
+                    />
+                    <button type="submit" className='submit-button'>Enviar</button>
                 </form>
             </div>
 

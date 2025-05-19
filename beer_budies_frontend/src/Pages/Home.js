@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/Header';
-import Calculadora from './Calculadora';
-import Mapa from './mapa'; 
-import Footer from './Footer';
+import Mapa from './mapa';
 import ProximosEventos from './ProximosEventos';
+import Calculadora from './Calculadora';
+import Footer from './Footer';
 
 const Home = () => {
+  const [refreshHeader, setRefreshHeader] = useState(0);
+
   return (
     <div className='app-container' style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Header />
+      <Header refreshTrigger={refreshHeader} />
       <div style={{ flex: 1 }}>
-        <Mapa /> 
+        <Mapa onBebidaAdicionada={() => setRefreshHeader(v => v + 1)} />
       </div>
-      <ProximosEventos /> {/* <-- fora do layout principal, fica flutuante */}
+      <ProximosEventos />
       <Calculadora />
       <Footer />
     </div>

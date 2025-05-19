@@ -10,13 +10,17 @@ function PerfilEstatisticas() {
     const navigate = useNavigate();
 
     useEffect(() => {
-    axios.get('http://localhost:8000/beer_budies/api/user/', { withCredentials: true })
+        axios.get('http://localhost:8000/beer_budies/api/user/', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access')}`
+            }
+        })
         .then(response => setUser(response.data))
         .catch(() => {
             setUser(null);
-            navigate('/logInPage'); // redirecionar para login em caso de erro
+            navigate('/logInPage');
         });
-}, [navigate]);
+    }, [navigate]);
 
     if (!user) return <div>A carregar...</div>;
 

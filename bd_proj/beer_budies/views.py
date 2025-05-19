@@ -5,13 +5,14 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate, login, logout
-from .models import Grupo, Evento, UserBebida, Bebida
+from .models import Grupo, Evento, UserBebida, Bebida, UserInfo
 from .serializers import GrupoSerializer, EventoSerializer, UserBebidaSerializer
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.db import models
+from django.db.models import Sum
 
 
 @api_view(['GET', 'POST'])
@@ -79,8 +80,26 @@ def logout_view(request):
 @permission_classes([IsAuthenticated])
 def user_view(request):
     user = request.user
-    total_bebidas = UserBebida.objects.filter(user=user).aggregate(total=models.Sum('cervejas'))['total'] or 0
-    return Response({'total_bebidas': total_bebidas})
+    try:
+        userinfo = user.userinfo
+    except UserInfo.DoesNotExist:
+        userinfo = None
+
+    total_bebidas = UserBebida.objects.filter(user=user).aggregate(
+        total=Sum('cervejas')
+    )['total'] or 0
+
+    total_festas = userinfo.total_festas if userinfo else 0
+    classificacao = userinfo.classificacao.designacao if (userinfo and userinfo.classificacao) else ""
+    data_entrada = userinfo.data_entrada if userinfo else user.date_joined.date()
+
+    return Response({
+        'username': user.username,
+        'data_entrada': data_entrada,
+        'total_bebidas': total_bebidas,
+        'total_festas': total_festas,
+        'classificacao': classificacao
+    })
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -123,6 +142,17 @@ def adicionar_bebida(request):
         cervejas=cervejas,
         local=local
     )
+
+    try:
+        userinfo = user.userinfo
+        total = UserBebida.objects.filter(user=user).aggregate(
+            total=models.Sum('cervejas')
+        )['total'] or 0
+        userinfo.total_bebidas = total
+        userinfo.save()
+    except UserInfo.DoesNotExist:
+        pass
+
     return Response({'success': True})
 
 @api_view(['GET'])
