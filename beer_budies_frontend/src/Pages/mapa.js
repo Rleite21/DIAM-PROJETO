@@ -101,8 +101,24 @@ function Mapa({ onBebidaAdicionada }) {
                     data.forEach(bebida => {
                         if (bebida.coordenadas) {
                             const [lat, lng] = bebida.coordenadas.split(',').map(Number);
+
+                            let dataHora = '';
+                            if (bebida.data) {
+                                const d = new Date(bebida.data);
+                                dataHora = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                            }
+
+                            const popupHtml = `
+                                <div class="popup-bebida">
+                                    ${bebida.evento ? `<div class="popup-evento">${bebida.evento}</div>` : ''}
+                                    <div><b>Local:</b> ${bebida.local || 'Desconhecido'}</div>
+                                    <div><b>Cervejas:</b> ${bebida.cervejas || 0}</div>
+                                    ${dataHora ? `<div><b>Data:</b> ${dataHora}</div>` : ''}
+                                </div>
+                            `;
+
                             const marker = L.marker([lat, lng], {icon: customIcon})
-                                .bindPopup(`<h3>${bebida.evento || 'Evento'}</h3><p>${bebida.local || ''}</p>`);
+                                .bindPopup(popupHtml);
                             marker.addTo(mapRef.current);
                             markersRef.current.push(marker);
                         }
@@ -148,8 +164,24 @@ function Mapa({ onBebidaAdicionada }) {
                         data.forEach(bebida => {
                             if (bebida.coordenadas) {
                                 const [lat, lng] = bebida.coordenadas.split(',').map(Number);
+
+                                let dataHora = '';
+                                if (bebida.data) {
+                                    const d = new Date(bebida.data);
+                                    dataHora = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                                }
+
+                                const popupHtml = `
+                                    <div class="popup-bebida">
+                                        ${bebida.evento ? `<div class="popup-evento">${bebida.evento}</div>` : ''}
+                                        <div><b>Local:</b> ${bebida.local || 'Desconhecido'}</div>
+                                        <div><b>Cervejas:</b> ${bebida.cervejas || 0}</div>
+                                        ${dataHora ? `<div><b>Data:</b> ${dataHora}</div>` : ''}
+                                    </div>
+                                `;
+
                                 const marker = L.marker([lat, lng], {icon: customIcon})
-                                    .bindPopup(`<h3>${bebida.evento || 'Evento'}</h3><p>${bebida.local || ''}</p>`);
+                                    .bindPopup(popupHtml);
                                 marker.addTo(mapRef.current);
                                 markersRef.current.push(marker);
                             }

@@ -127,3 +127,32 @@ body {
     font-size: 15px;
 }
 
+.popup-bebida {
+    font-family: inherit;
+    font-size: 1.1em;
+    padding: 6px 2px 2px 2px;
+    color: #222;
+    min-width: 180px;
+    background: #fffbe6;
+    border-radius: 8px;
+    border: 3px solid #FA9020;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.popup-bebida .popup-evento {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #FA9020;
+    margin-bottom: 6px;
+    text-align: center;
+}
+.popup-bebida b {
+    color: #422800;
+}
+
+.leaflet-popup-content-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
