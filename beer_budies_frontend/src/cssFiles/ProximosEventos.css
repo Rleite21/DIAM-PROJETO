@@ -23,19 +23,48 @@
 }
 
 .proximos-eventos-container li {
-  margin-bottom: 10px;
-  color: #222;
-  padding-left: 0.2em;
-  line-height: 1.5;
-  background: none;
-  border-radius: 0;
-  transition: background 0.2s;
+  margin-bottom: 14px;
+  color: #FA9020;
+  padding: 10px 12px;
+  line-height: 1.6;
+  background: #fffbe6;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(250,144,32,0.07);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.proximos-eventos-container li::before {
+  content: "🎉";
+  font-size: 1.3em;
+  margin-right: 8px;
+}
+
+.evento-nome {
+  color: #422800;
+  font-weight: bold;
+  margin-right: 8px;
+  font-size: 1.08em;
+}
+
+.evento-data {
+  color: #b48800;
+  background: #fff3cd;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.98em;
+  margin-left: auto;
 }
 
 .proximos-eventos-container li:hover {
   background: #ffe9a7;
   color: #b48800;
   cursor: pointer;
+  transform: scale(1.03);
 }
 
 .proximos-eventos-tab {
@@ -86,4 +115,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.criarbotão{
+      margin-top: -15px;
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 40px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    padding: 5px 5px;
+    font-size: 15px;
 }

@@ -29,11 +29,14 @@ const ProximosEventos = () => {
           <ul>
             {eventos.map((evento, index) => (
               <li key={index}>
-                {evento.nome}: ({evento.data})
+                <span className="evento-nome">{evento.nome}</span>
+                <span className="evento-data">
+                  {evento.data ? new Date(evento.data).toLocaleDateString() : ""}
+                </span>
               </li>
             ))}
           </ul>
-          <button id="criar_evento_button" onClick={() => navigate('/CriarEvento')}>Criar evento</button>
+          <button className="criarbotão" id="criar_evento_button" onClick={() => navigate('/CriarEvento')}>Criar evento</button>
         </div>
       </div>
     </>
