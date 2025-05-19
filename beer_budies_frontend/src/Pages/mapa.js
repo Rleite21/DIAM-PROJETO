@@ -119,7 +119,7 @@ function Mapa() {
                         className="button-mapa"
                         onClick={() => setShowForm(v => !v)}
                     >
-                        {showForm ? "Fechar formulário" : "Adicionar Bebida"}
+                        {showForm ? "Fechar formulário" : "Diz-me onde e quando!"}
                     </button>
                 </div>
             )}
@@ -127,7 +127,7 @@ function Mapa() {
             <div className={`slide-form-container${showForm && isLoggedIn ? " open" : ""}`}>
                 <form className="evento-form" onSubmit={handleSubmit}>
                     <label>
-                        Onde bebeu?*
+                        Onde bebeste?*
                         <input
                             type="text"
                             name="local"
@@ -146,7 +146,7 @@ function Mapa() {
                         />
                     </label>
                     <label>
-                        Quantas cervejas bebeu?*
+                        Quantas cervejas bebeste?*
                         <input
                             type="number"
                             name="cervejas"
@@ -173,7 +173,7 @@ function Mapa() {
 
             {!isLoggedIn && (
                 <div style={{ textAlign: "center", marginTop: "2rem" }}>
-                    <p>Faça login para adicionar eventos!</p>
+                    <p>Faz login para meteres onde andaste a beber!</p>
                 </div>
             )}
         </div>
